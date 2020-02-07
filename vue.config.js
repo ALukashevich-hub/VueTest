@@ -1,8 +1,8 @@
 module.exports = {
-    devServer: {
+  devServer: {
     watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000
-      }
-    }
-  }
+      aggregateTimeout: 300,
+      poll: 1000,
+    },
+  },
+};
