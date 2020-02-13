@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap&subset=cyrillic');
+// @import url('~@/assets/scss/main.scss');
 .categoryWrapper {
   // border: 1px solid white;
   display: flex;
@@ -38,14 +40,10 @@ a {
   display: inline-block;
   color: white;
 }
-@font-face {
-  font-family: 'kar';
-  src: url('../assets/fonts/Caveat-Regular.ttf') format('ttf');
-  font-style: normal;
-}
 h2 {
-//   text-transform: uppercase;
-  font-family: 'kar',sans-serif;
+  text-transform: uppercase;
+  // font-family: 'Caveat1', cursive;
+  font-family: 'Caveat', cursive;
 }
 @media (min-width: 767px) {
   .categoryWrapper {

@@ -63,6 +63,10 @@ export default {
 }
 h1,
 p {
-  max-width: 500px;
+  max-width: 600px;
+  font-family: 'Caveat', cursive;
+}
+p{
+  font-size: 1.4rem;
 }
 </style>
