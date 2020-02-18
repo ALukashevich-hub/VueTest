@@ -18,9 +18,6 @@
 
 export default {
   name: 'Home',
-  // components: {
-
-  // },
   methods: {
     goMain() {
       this.$router.push('main');
