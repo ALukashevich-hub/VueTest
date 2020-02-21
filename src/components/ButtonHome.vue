@@ -1,19 +1,23 @@
 <template>
-  <router-link to="/">
-    <canvas id="HomeImg"></canvas>
+  <router-link class="logoNav" to="/">
+    <Logo/>
   </router-link>
 </template>
 
 <script>
+import Logo from '@/components/Logo.vue';
+
 export default {
   name: 'ButtonHome',
+  components: {
+    Logo,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-#HomeImg {
+.logoNav {
   width: 50px;
   height: 50px;
-  border: 1px solid green;
 }
 </style>

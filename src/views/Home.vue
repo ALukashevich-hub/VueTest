@@ -1,11 +1,13 @@
 <template>
   <div @click="goMain" class="home">
-    <h1>Hello, I am andrey and this is my first SPA</h1>
+    <div class="logoHome">
+      <Logo/>
+    </div>
+    <h1>Здесь будет название сайта/бренда</h1>
     <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-      Harum odit deserunt eveniet nam hic voluptatibus, veritatis
-      autem exercitationem nostrum pariatur repudiandae accusantium
-      doloremque assumenda tempore sint nemo in culpa. Autem!
+      Приветствую, здесь вы найдете примеры
+      декоративных изделий из металла, их описание
+      и примерную стоимость конечного продукта
     </p>
 
   </div>
@@ -14,7 +16,7 @@
 
 <script>
 // @ is an alias to /src
-
+import Logo from '@/components/Logo.vue';
 
 export default {
   name: 'Home',
@@ -22,6 +24,9 @@ export default {
     goMain() {
       this.$router.push('main');
     },
+  },
+  components: {
+    Logo,
   },
 };
 </script>
@@ -39,11 +44,15 @@ export default {
     justify-content: center;
     align-items: center;
 }
+.logoHome {
+    width: 100px;
+    height: 100px;
+}
 h1{
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 h1, p{
-  max-width: 70%;
+  max-width: 80%;
 }
 @media (min-width: 1399px) {
   h1, p{

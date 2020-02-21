@@ -1,14 +1,27 @@
 <template>
   <div class="categoryWrapper">
-    <router-link to="/">
+    <router-link @mouseover.native="mouseOver" @mouseleave.native="mouseLeave"  to="/">
       <canvas></canvas>
-      <h2>{{category}}</h2>
+      <h2 :class="{onFocus: hasFocus}">{{category}}</h2>
     </router-link>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      hasFocus: false,
+    };
+  },
+  methods: {
+    mouseOver() {
+      this.hasFocus = true;
+    },
+    mouseLeave() {
+      this.hasFocus = false;
+    },
+  },
   props: {
     category: {
       type: String,
@@ -19,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap&subset=cyrillic');
+//@import url('https://fonts.googleapis.com/css?family=Caveat&display=swap&subset=cyrillic');
 // @import url('~@/assets/scss/main.scss');
 .categoryWrapper {
   // border: 1px solid white;
@@ -42,8 +55,22 @@ a {
 }
 h2 {
   text-transform: uppercase;
-  // font-family: 'Caveat1', cursive;
-  font-family: 'Caveat', cursive;
+  width: min-content;
+  margin: 0 auto;
+  position: relative;
+}
+h2::after {
+  content: '';
+  position: absolute;
+  bottom:0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #e44a03;
+  transition: all 150ms ease-out;
+  }
+  .onFocus::after{
+  width: 100%;
 }
 @media (min-width: 767px) {
   .categoryWrapper {

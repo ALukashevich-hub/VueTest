@@ -1,8 +1,8 @@
 <template>
   <div class="navigation">
-    <ButtonHome class="buttonHome" />
+    <ButtonHome v-if="VisibleButtonHome" class="buttonHome" />
     <ButtonShowMenu @changeShowMenu="changeShowMenu" class="buttonShowMenu" />
-    <NavigationLink :showMenu="showMenu" class="navigationLink"/>
+    <NavigationLink @hideMenu="Hide" :showMenu="showMenu" class="navigationLink"/>
   </div>
 </template>
 
@@ -18,9 +18,17 @@ export default {
       showMenu: false,
     };
   },
+  computed: {
+    VisibleButtonHome() {
+      return this.$route.name !== 'HomePage';
+    },
+  },
   methods: {
     changeShowMenu() {
       this.showMenu = !this.showMenu;
+    },
+    Hide() {
+      this.showMenu = false;
     },
   },
   components: {
