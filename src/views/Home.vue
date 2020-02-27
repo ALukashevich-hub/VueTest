@@ -3,7 +3,7 @@
     <div class="logoHome">
       <Logo/>
     </div>
-    <h1>Здесь будет название сайта/бренда</h1>
+    <h1>сайт/бренд</h1>
     <p>
       Приветствую, здесь вы найдете примеры
       декоративных изделий из металла, их описание
@@ -52,7 +52,22 @@ h1{
   margin-bottom: 0;
 }
 h1, p{
-  max-width: 80%;
+  max-width: 90%;
+}
+p {
+  font-size: 1.5rem;
+}
+h1 {
+  font-size: 3rem;
+  font-weight: normal;
+}
+  @media (min-width: 767px) {
+  p{
+  font-size: 1.7rem;
+  }
+  h1, p{
+  max-width: 70%;
+}
 }
 @media (min-width: 1399px) {
   h1, p{

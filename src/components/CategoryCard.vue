@@ -1,6 +1,6 @@
 <template>
   <div class="categoryWrapper">
-    <router-link @mouseover.native="mouseOver" @mouseleave.native="mouseLeave"  to="/">
+    <router-link @mouseover.native="mouseOver" @mouseleave.native="mouseLeave"  to="/Specific">
       <canvas></canvas>
       <h2 :class="{onFocus: hasFocus}">{{category}}</h2>
     </router-link>
@@ -50,12 +50,12 @@ a {
   text-decoration: none;
   text-align: center;
   margin: auto;
-  display: inline-block;
+  display: block;
   color: white;
 }
 h2 {
   text-transform: uppercase;
-  width: min-content;
+  width: max-content;
   margin: 0 auto;
   position: relative;
 }

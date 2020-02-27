@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="mainView">
       <div class="middleText">
         <h1>Наша продукция</h1>
         <p>
@@ -9,12 +9,12 @@
         </p>
       </div>
       <div class="middle">
-        <Catalog category="test1"/>
-        <Catalog category="test2"/>
-        <Catalog category="test3"/>
-        <Catalog />
-        <Catalog />
-        <Catalog />
+        <Catalog category="Уличные очаги"/>
+        <Catalog category="Мангалы"/>
+        <Catalog category="Решетки"/>
+        <Catalog category="Перила"/>
+        <Catalog category="Ворота"/>
+        <Catalog category="Калитки"/>
       </div>
     </div>
 </template>
@@ -24,7 +24,7 @@
 import Catalog from '@/components/CategoryCard.vue';
 
 export default {
-  name: 'main',
+  name: 'mainView',
   components: {
     Catalog,
   },
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
+.mainView {
   width: 100%;
   height: 100%;
   color: white;
@@ -52,6 +52,7 @@ h1,
 p {
   max-width: 600px;
   font-family: 'Caveat', cursive;
+  font-weight: normal;
 }
 h1::after {
     content: '';
@@ -62,6 +63,11 @@ h1::after {
     background: #e44a03;
 }
 p{
+  font-size: 1.5rem;
+}
+  @media (min-width: 767px) {
+  p{
   font-size: 1.7rem;
+  }
 }
 </style>

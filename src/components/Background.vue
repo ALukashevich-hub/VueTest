@@ -1,6 +1,6 @@
 <template>
   <div id="back">
-    <canvas ref="stage"></canvas>
+    <canvas ref="background"></canvas>
   </div>
 </template>
 <script>
@@ -32,8 +32,8 @@ export default {
           minimumSpeedMultiplier: 1,
         },
         acceleration: {
-          x: 40,
-          y: 10,
+          x: 80,
+          y: 20,
         },
         maxSpeed: 800,
         startRotation: {
@@ -46,8 +46,8 @@ export default {
           max: 0,
         },
         lifetime: {
-          min: 5,
-          max: 10,
+          min: 3,
+          max: 7,
         },
         blendMode: 'add',
         frequency: 0.07,
@@ -60,8 +60,8 @@ export default {
         addAtBack: false,
         spawnType: 'rect',
         spawnRect: {
-          x: -1000,
-          y: 500,
+          x: 0,
+          y: 1000,
           w: 1800,
           h: 60,
         },
@@ -69,13 +69,24 @@ export default {
     };
   },
   mounted() {
-    const canvas = this.$refs.stage;
+    const canvas = this.$refs.background;
+    let wBG = window.innerWidth;
+    let hBG = window.innerHeight;
     // Basic PIXI Setup
     const rendererOptions = {
+      transparent: true,
       view: canvas,
+      height: hBG,
+      width: wBG,
     };
     const stage = new PIXI.Container();
     const renderer = new PIXI.Renderer(rendererOptions);
+    window.addEventListener('resize', () => {
+      wBG = window.innerWidth;
+      hBG = window.innerHeight;
+      renderer.resize(wBG, hBG);
+    });
+    // const ticker = new PIXI.Ticker();
     const emitter = new particles.Emitter(
 
       // The PIXI.Container to put the emitter in
@@ -93,6 +104,7 @@ export default {
     );
     let elapsed = Date.now();
 
+
     // Update function every frame
     const update = () => {
     // Update the next frame
@@ -104,7 +116,6 @@ export default {
       // number of seconds since the last update
       emitter.update((now - elapsed) * 0.001);
       elapsed = now;
-
       // Should re-render the PIXI Stage
       renderer.render(stage);
     };
@@ -114,6 +125,13 @@ export default {
 
     // Start the update
     update();
+    // const update = () => {
+    //   emitter.update(0.01);
+    //   renderer.render(stage);
+    // };
+    // emitter.emit = true;
+    // ticker.add(update);
+    // ticker.start();
   },
 };
 </script>
@@ -130,7 +148,7 @@ export default {
   z-index: -1;
 }
 canvas {
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
 }
 </style>
