@@ -1,34 +1,27 @@
 <template>
   <div class="wrap">
     <div class="left">
-      <vue-flux :options="options" :images="images" :transitions="transitions">
-        <template v-slot:preloader>
-          <flux-preloader />
-        </template>
-
-        <template v-slot:controls >
-          <flux-controls />
-        </template>
-           <template v-slot:pagination>
-      <flux-pagination />
-   </template>
-      <template v-slot:index>
-      <flux-index />
-   </template>
-      </vue-flux>
+        <vue-flux :options="options" :images="images" :transitions="transitions">
+          <template v-slot:preloader>
+            <flux-preloader />
+          </template>
+          <template v-slot:index>
+            <flux-index />
+          </template>
+          <template v-slot:pagination>
+            <flux-pagination />
+          </template>
+        </vue-flux>
     </div>
     <div class="right">
-      <h1 class="title">TEST</h1>
+      <h1 class="title">{{testMessage}}</h1>
       <p>
         Lorem ipsum dolor sit amet
         consectetur adipisicing elit.
-        Itaque placeat possimus dolo
-        remque consectetur nihil sapiente
       </p>
       <p>
         Lorem ipsum dolor sit amet
         consectetur adipisicing elit.
-        Itaque placeat possimus dolo
       </p>
       <p>
         Lorem ipsum dolor sit amet
@@ -39,19 +32,21 @@
 </template>
 
 <script>
-import pathTexture1 from '@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg';
+// import pathTexture1 from '@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg';
 import pathTexture2 from '@/assets/1558886217_nedovolnoe-kote-s-sigaretoy-art2.jpg';
 import pathTexture3 from '@/assets/mlechnyi-put-zvezdy-noch-gory-peizazh-krasota.jpg';
 import {
-  VueFlux,
-  FluxIndex,
-  FluxControls,
-  FluxPagination,
-  FluxPreloader,
+  VueFlux, FluxIndex, FluxPagination, FluxPreloader,
 } from 'vue-flux';
 
 export default {
   name: 'Specific',
+  components: {
+    VueFlux,
+    FluxIndex,
+    FluxPagination,
+    FluxPreloader,
+  },
   data: () => ({
     options: {
       allowFullscreen: true,
@@ -65,17 +60,18 @@ export default {
       lazyLoad: true,
       lazyLoadAfter: 3,
     },
-    images: [pathTexture1, pathTexture2, pathTexture3],
-    transitions: [
-      'book',
+    images: [
+      require('@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg'),
+      pathTexture2,
+      pathTexture3,
     ],
+    transitions: ['book'],
   }),
-  components: {
-    VueFlux,
-    FluxIndex,
-    FluxControls,
-    FluxPagination,
-    FluxPreloader,
+  props: {
+    testMessage: {
+      type: String,
+      required: true,
+    },
   },
 };
 </script>
@@ -94,6 +90,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  overflow: hidden;
 }
 .right {
   border: 1px solid red;
@@ -101,17 +98,28 @@ export default {
   display: flex;
   flex-flow: column nowrap;
 }
+.vue-flux .flux-index {
+  margin-top: auto;
+}
 p {
-  margin: 1rem;
+  margin: 0 1rem 1rem 1rem;
   font-size: 1.5rem;
 }
 .title {
   margin: 5rem 1rem 1rem 1rem;
 }
 @media (min-width: 767px) {
+  .title {
+    margin: 7rem 1rem 1rem 3rem;
+  }
   p {
-    font-size: 1.5rem;
-    max-width: 90%;
+    margin: 1rem 3rem;
+  }
+}
+@media (min-width: 1023px) {
+  p {
+    font-size: 1.7rem;
+    max-width: 80%;
   }
   .wrap {
     flex-flow: row nowrap;
@@ -120,13 +128,7 @@ p {
     justify-content: center;
   }
   .title {
-    margin: 1rem;
-  }
-}
-@media (min-width: 1023px) {
-  p {
-    font-size: 1.7rem;
-    max-width: 80%;
+    margin: 0 1rem 0 3rem;
   }
 }
 </style>

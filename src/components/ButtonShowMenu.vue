@@ -1,12 +1,26 @@
 <template>
-  <div @click="$emit('changeShowMenu')"
-  @mouseover="mouseOver"
-  @mouseleave="mouseLeave"
-   class="buttonMenuOpen">
-    <span class="sFirst" :class="{onFocusButton: hasFocus}"></span>
-    <span class="sSecond" :class="{onFocusButton: hasFocus}"></span>
-    <span class="sThird" :class="{onFocusButton: hasFocus}"></span>
-    <span class="sFourth" :class="{onFocusButton: hasFocus}"></span>
+  <div
+    class="buttonMenuOpen"
+    @click="$emit('changeShowMenu')"
+    @mouseover="mouseOver"
+    @mouseleave="mouseLeave"
+  >
+    <span
+      class="sFirst"
+      :class="{onFocusButton: hasFocus}"
+    />
+    <span
+      class="sSecond"
+      :class="{onFocusButton: hasFocus}"
+    />
+    <span
+      class="sThird"
+      :class="{onFocusButton: hasFocus}"
+    />
+    <span
+      class="sFourth"
+      :class="{onFocusButton: hasFocus}"
+    />
   </div>
 </template>
 

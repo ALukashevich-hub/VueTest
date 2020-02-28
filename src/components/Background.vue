@@ -1,6 +1,6 @@
 <template>
   <div id="back">
-    <canvas ref="background"></canvas>
+    <canvas ref="background" />
   </div>
 </template>
 <script>

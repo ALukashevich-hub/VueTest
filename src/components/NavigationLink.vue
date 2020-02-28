@@ -1,15 +1,29 @@
 <template>
   <transition name="fadeTest">
-  <nav v-show="showMenu">
-    <ButtonHome @click.native="$emit('hideMenu')" class="buttonHome" />
-    <ButtonHideMenu @click.native="$emit('hideMenu')" class="buttonHideMenu" />
-    <router-link class="linktest"
-    @click.native="$emit('hideMenu')"
-    to="/main">Продукция</router-link>
-    <router-link class="linktest"
-    @click.native="$emit('hideMenu')"
-    to="/contacts">Контакты</router-link>
-  </nav>
+    <nav v-show="showMenu">
+      <ButtonHome
+        class="buttonHome"
+        @click.native="$emit('hideMenu')"
+      />
+      <ButtonHideMenu
+        class="buttonHideMenu"
+        @click.native="$emit('hideMenu')"
+      />
+      <router-link
+        class="linktest"
+        to="/main"
+        @click.native="$emit('hideMenu')"
+      >
+        Продукция
+      </router-link>
+      <router-link
+        class="linktest"
+        to="/contacts"
+        @click.native="$emit('hideMenu')"
+      >
+        Контакты
+      </router-link>
+    </nav>
   </transition>
 </template>
 
@@ -18,15 +32,15 @@ import ButtonHome from '@/components/ButtonHome.vue';
 import ButtonHideMenu from '@/components/ButtonHideMenu.vue';
 
 export default {
+  components: {
+    ButtonHome,
+    ButtonHideMenu,
+  },
   props: {
     showMenu: {
       type: Boolean,
       default: false,
     },
-  },
-  components: {
-    ButtonHome,
-    ButtonHideMenu,
   },
 };
 </script>
@@ -41,7 +55,7 @@ nav {
   width: 100%;
   height: 100%;
   background: black;
-  z-index: 1;
+  z-index: 50;
 }
 .linktest{
   text-decoration: none;

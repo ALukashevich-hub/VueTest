@@ -1,14 +1,24 @@
 <template>
   <div class="categoryWrapper">
-    <router-link @mouseover.native="mouseOver" @mouseleave.native="mouseLeave"  to="/Specific">
-      <canvas></canvas>
-      <h2 :class="{onFocus: hasFocus}">{{category}}</h2>
-    </router-link>
+       <div @mouseover="mouseOver"
+            @mouseleave="mouseLeave"
+            class="wrapTouch">
+        <canvas />
+        <h2 :class="{onFocus: hasFocus}">
+          {{ category }}
+        </h2>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    category: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       hasFocus: false,
@@ -22,12 +32,6 @@ export default {
       this.hasFocus = false;
     },
   },
-  props: {
-    category: {
-      type: String,
-      default: 'hello',
-    },
-  },
 };
 </script>
 
@@ -36,22 +40,19 @@ export default {
 // @import url('~@/assets/scss/main.scss');
 .categoryWrapper {
   // border: 1px solid white;
-  display: flex;
   width: 50%;
   margin: 10px auto 0 auto;
+  display: block;
+}
+.wrapTouch {
+  display: inline-block;
+  cursor: pointer;
 }
 canvas {
   width: 140px;
   height: 140px;
   margin: auto;
   border: 1px solid green;
-}
-a {
-  text-decoration: none;
-  text-align: center;
-  margin: auto;
-  display: block;
-  color: white;
 }
 h2 {
   text-transform: uppercase;

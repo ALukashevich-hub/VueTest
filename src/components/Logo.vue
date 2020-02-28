@@ -1,5 +1,8 @@
 <template>
-<canvas ref="logo" id="logo"></canvas>
+  <canvas
+    id="logo"
+    ref="logo"
+  />
 </template>
 
 <script>

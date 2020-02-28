@@ -1,8 +1,18 @@
 <template>
   <div class="navigation">
-    <ButtonHome v-if="VisibleButtonHome" class="buttonHome" />
-    <ButtonShowMenu @changeShowMenu="changeShowMenu" class="buttonShowMenu" />
-    <NavigationLink @hideMenu="Hide" :showMenu="showMenu" class="navigationLink"/>
+    <ButtonHome
+      v-if="VisibleButtonHome"
+      class="buttonHome"
+    />
+    <ButtonShowMenu
+      class="buttonShowMenu"
+      @changeShowMenu="changeShowMenu"
+    />
+    <NavigationLink
+      :show-menu="showMenu"
+      class="navigationLink"
+      @hideMenu="Hide"
+    />
   </div>
 </template>
 
@@ -13,6 +23,11 @@ import NavigationLink from '@/components/NavigationLink.vue';
 
 export default {
   name: 'Navigation',
+  components: {
+    ButtonHome,
+    ButtonShowMenu,
+    NavigationLink,
+  },
   data() {
     return {
       showMenu: false,
@@ -30,11 +45,6 @@ export default {
     Hide() {
       this.showMenu = false;
     },
-  },
-  components: {
-    ButtonHome,
-    ButtonShowMenu,
-    NavigationLink,
   },
 };
 </script>

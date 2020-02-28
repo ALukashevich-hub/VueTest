@@ -1,22 +1,22 @@
 <template>
   <div class="mainView">
-      <div class="middleText">
-        <h1>Наша продукция</h1>
-        <p>
-          Название сайта/бренда - это ремесленническая мастерская,
-          специализированная на изготовлении декоративных изделий
-          из металла
-        </p>
-      </div>
-      <div class="middle">
-        <Catalog category="Уличные очаги"/>
-        <Catalog category="Мангалы"/>
-        <Catalog category="Решетки"/>
-        <Catalog category="Перила"/>
-        <Catalog category="Ворота"/>
-        <Catalog category="Калитки"/>
-      </div>
+    <div class="middleText">
+      <h1>Наша продукция</h1>
+      <p>
+        Название сайта/бренда - это ремесленническая мастерская,
+        специализированная на изготовлении декоративных изделий
+        из металла
+      </p>
     </div>
+    <div class="middle">
+      <Catalog @click.native="programRoute" category="Уличные очаги" />
+      <Catalog @click.native="programRoute" category="Мангалы" />
+      <Catalog @click.native="programRoute" category="Решетки" />
+      <Catalog @click.native="programRoute" category="Перила" />
+      <Catalog @click.native="programRoute" category="Ворота" />
+      <Catalog @click.native="programRoute" category="Калитки" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -24,9 +24,14 @@
 import Catalog from '@/components/CategoryCard.vue';
 
 export default {
-  name: 'mainView',
+  name: 'MainView',
   components: {
     Catalog,
+  },
+  methods: {
+    programRoute() {
+      this.$router.push('/Specific');
+    },
   },
 };
 </script>

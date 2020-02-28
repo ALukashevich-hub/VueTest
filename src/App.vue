@@ -1,8 +1,8 @@
 <template>
   <main id="app">
-    <Navigation/>
+    <Navigation />
     <router-view />
-    <Background/>
+    <Background />
   </main>
 </template>
 

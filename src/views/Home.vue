@@ -1,7 +1,10 @@
 <template>
-  <div @click="goMain" class="home">
+  <div
+    class="home"
+    @click="goMain"
+  >
     <div class="logoHome">
-      <Logo/>
+      <Logo />
     </div>
     <h1>сайт/бренд</h1>
     <p>
@@ -9,9 +12,7 @@
       декоративных изделий из металла, их описание
       и примерную стоимость конечного продукта
     </p>
-
   </div>
-
 </template>
 
 <script>
@@ -20,13 +21,13 @@ import Logo from '@/components/Logo.vue';
 
 export default {
   name: 'Home',
+  components: {
+    Logo,
+  },
   methods: {
     goMain() {
       this.$router.push('main');
     },
-  },
-  components: {
-    Logo,
   },
 };
 </script>

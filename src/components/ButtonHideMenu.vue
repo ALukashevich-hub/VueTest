@@ -1,9 +1,10 @@
 <template>
-      <div class="buttonMenuClose"
-        @mouseover="mouseOver"
-        @mouseleave="mouseLeave"
-        :class="{onFocusButtonClose: hasFocus}">
-      </div>
+  <div
+    class="buttonMenuClose"
+    :class="{onFocusButtonClose: hasFocus}"
+    @mouseover="mouseOver"
+    @mouseleave="mouseLeave"
+  />
 </template>
 
 <script>
