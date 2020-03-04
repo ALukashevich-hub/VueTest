@@ -1,13 +1,15 @@
 <template>
   <div class="categoryWrapper">
-       <div @mouseover="mouseOver"
-            @mouseleave="mouseLeave"
-            class="wrapTouch">
+      <router-link @mouseover.native="mouseOver"
+                   @mouseleave.native="mouseLeave"
+                   class="wrapTouch"
+                   :to="{ name: 'SpecificPage',
+                    params: { nameCategory: nameCategory, idProduct: idProduct }}">
         <canvas />
         <h2 :class="{onFocus: hasFocus}">
           {{ category }}
         </h2>
-      </div>
+      </router-link>
   </div>
 </template>
 
@@ -16,6 +18,9 @@ export default {
   props: {
     category: {
       type: String,
+      required: true,
+    },
+    nameCategory: {
       required: true,
     },
   },
@@ -32,6 +37,11 @@ export default {
       this.hasFocus = false;
     },
   },
+  computed: {
+    idProduct() {
+      return this.$store.state.allProduct[this.nameCategory].idProduct;
+    },
+  },
 };
 </script>
 
@@ -46,7 +56,8 @@ export default {
 }
 .wrapTouch {
   display: inline-block;
-  cursor: pointer;
+  text-decoration: none;
+  color: white;
 }
 canvas {
   width: 140px;

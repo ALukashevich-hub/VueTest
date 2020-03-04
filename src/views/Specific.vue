@@ -1,5 +1,10 @@
 <template>
   <div class="wrap">
+    <div v-if="idProduct < maxCountProduct"
+         @click="nextPage" class="nextView">Следующий</div>
+    <div v-if="idProduct > 1"
+         @click="previousPage" class="previousView">Предыдущий</div>
+    <router-link class="mainView" to="/main">Главное меню</router-link>
     <div class="left">
         <vue-flux :options="options" :images="images" :transitions="transitions">
           <template v-slot:preloader>
@@ -14,18 +19,12 @@
         </vue-flux>
     </div>
     <div class="right">
-      <h1 class="title">{{testMessage}}</h1>
-      <p>
-        Lorem ipsum dolor sit amet
-        consectetur adipisicing elit.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet
-        consectetur adipisicing elit.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet
-        consectetur adipisicing elit
+      <h1 class="title">
+        {{title}}
+      </h1>
+      <p class="descProduct"
+         v-for="(item, index) in description" :key="index">
+        {{item.description}}
       </p>
     </div>
   </div>
@@ -33,8 +32,8 @@
 
 <script>
 // import pathTexture1 from '@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg';
-import pathTexture2 from '@/assets/1558886217_nedovolnoe-kote-s-sigaretoy-art2.jpg';
-import pathTexture3 from '@/assets/mlechnyi-put-zvezdy-noch-gory-peizazh-krasota.jpg';
+// import pathTexture2 from '@/assets/1558886217_nedovolnoe-kote-s-sigaretoy-art2.jpg';
+// import pathTexture3 from '@/assets/mlechnyi-put-zvezdy-noch-gory-peizazh-krasota.jpg';
 import {
   VueFlux, FluxIndex, FluxPagination, FluxPreloader,
 } from 'vue-flux';
@@ -60,23 +59,87 @@ export default {
       lazyLoad: true,
       lazyLoadAfter: 3,
     },
-    images: [
-      require('@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg'),
-      pathTexture2,
-      pathTexture3,
-    ],
+    // images: [
+    //   require('@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg'),
+    //   pathTexture2,
+    //   pathTexture3,
+    // ],
+    images: [],
     transitions: ['book'],
   }),
-  props: {
-    testMessage: {
-      type: String,
-      required: true,
+  computed: {
+    description() {
+      return this.$store.state.allProduct[this.$route.params.nameCategory]
+        .info[this.idProduct - 1].descriptions;
+    },
+    title() {
+      return this.$store.state
+        .allProduct[this.$route.params.nameCategory]
+        .info[this.idProduct - 1].TitleSpec;
+    },
+    idProduct() {
+      return this.$store.state.allProduct[this.$route.params.nameCategory].idProduct;
+    },
+    maxCountProduct() {
+      return this.$store.state
+        .allProduct[this.$route.params.nameCategory]
+        .info.length;
+    },
+    imgArray() {
+      return this.$store.state.allProduct[this.$route.params.nameCategory]
+        .info[this.idProduct - 1].img;
+    },
+  },
+  beforeRouteUpdate(to, from, next) {
+    console.log(this.$route.params.nameCategory);
+    console.log(this.$route.params.idProduct);
+    console.log(`imgArray: ${this.imgArray}`);
+    console.log(`images: ${this.images}`);
+    this.images = this.imgArray;
+    next();
+  },
+  created() {
+    this.images = this.imgArray;
+  },
+  methods: {
+    previousPage() {
+      if (this.idProduct > 1) {
+        this.$store.commit('previousProduct', this.$route.params.nameCategory);
+        this.$router.push(`/Specific/${this.$route.params.nameCategory}/${this.idProduct}`);
+      }
+    },
+    nextPage() {
+      if (this.idProduct < this.maxCountProduct) {
+        this.$store.commit('nextProduct', this.$route.params.nameCategory);
+        this.$router.push(`/Specific/${this.$route.params.nameCategory}/${this.idProduct}`);
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.nextView, .previousView, .mainView {
+  position: absolute;
+  display: block;
+  color: white;
+  cursor: pointer;
+  font-size: 1.7rem;
+  font-family: 'Caveat', cursive;
+}
+.previousView{
+  bottom: 5%;
+  right: 35%;
+}
+.nextView {
+  bottom: 5%;
+  right: 5%;
+}
+.mainView {
+  top: 120px;
+  left: 50px;
+  text-decoration: none;
+}
 .wrap {
   width: 100%;
   height: 100%;
@@ -101,7 +164,7 @@ export default {
 .vue-flux .flux-index {
   margin-top: auto;
 }
-p {
+.descProduct {
   margin: 0 1rem 1rem 1rem;
   font-size: 1.5rem;
 }
@@ -112,12 +175,12 @@ p {
   .title {
     margin: 7rem 1rem 1rem 3rem;
   }
-  p {
+  .descProduct {
     margin: 1rem 3rem;
   }
 }
 @media (min-width: 1023px) {
-  p {
+  .descProduct {
     font-size: 1.7rem;
     max-width: 80%;
   }

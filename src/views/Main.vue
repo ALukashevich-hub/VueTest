@@ -9,12 +9,18 @@
       </p>
     </div>
     <div class="middle">
-      <Catalog @click.native="programRoute" category="Уличные очаги" />
-      <Catalog @click.native="programRoute" category="Мангалы" />
-      <Catalog @click.native="programRoute" category="Решетки" />
-      <Catalog @click.native="programRoute" category="Перила" />
-      <Catalog @click.native="programRoute" category="Ворота" />
-      <Catalog @click.native="programRoute" category="Калитки" />
+      <Catalog :nameCategory="this.$store.state.allProduct.gardenSphere.name"
+                category="Уличные очаги" />
+      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+                category="Мангалы" />
+      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+                category="Решетки" />
+      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+                category="Перила" />
+      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+                category="Ворота" />
+      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+                category="Калитки" />
     </div>
   </div>
 </template>
@@ -29,9 +35,12 @@ export default {
     Catalog,
   },
   methods: {
-    programRoute() {
-      this.$router.push('/Specific');
-    },
+    /*
+      До перехода по ссылке необходимо:
+      Показать дисплей загрузки, пока выполняются следующие действия.
+      Запросить необходимые данные из Firestore, поместить в store,
+      проверить что нет ошибок, перейти по ссылке и отобразить содержимое.
+      */
   },
 };
 </script>
