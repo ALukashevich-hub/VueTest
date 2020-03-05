@@ -23,6 +23,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Caveat&display=swap&subset=cyrillic');
 h1, h2, p, a {
   font-family: 'Caveat', cursive;
+  font-weight: normal;
 }
 body,
 html,

@@ -10,7 +10,15 @@
     </div>
     <div class="middle">
       <Catalog :nameCategory="this.$store.state.allProduct.gardenSphere.name"
-                category="Уличные очаги" />
+                category="Уличные очаги">
+        <template v-slot:svgContainer>
+            <symbol id="my-symbol" viewBox="-45 -45 600 600">
+              <path fill="#E34F26" d="M71,460 L30,0 481,0 440,460 255,512"/>
+              <path fill="#EF652A" d="M256,472 L405,431 440,37 256,37"/>
+            </symbol>
+            <use xlink:href="#my-symbol"/>
+        </template>
+      </Catalog>
       <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Мангалы" />
       <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"

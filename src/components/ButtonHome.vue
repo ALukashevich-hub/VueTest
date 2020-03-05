@@ -1,8 +1,5 @@
 <template>
-  <router-link
-    class="logoNav"
-    to="/"
-  >
+  <router-link class="logoNav" to="/">
     <Logo />
   </router-link>
 </template>

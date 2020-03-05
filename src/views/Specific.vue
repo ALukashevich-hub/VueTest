@@ -31,9 +31,6 @@
 </template>
 
 <script>
-// import pathTexture1 from '@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg';
-// import pathTexture2 from '@/assets/1558886217_nedovolnoe-kote-s-sigaretoy-art2.jpg';
-// import pathTexture3 from '@/assets/mlechnyi-put-zvezdy-noch-gory-peizazh-krasota.jpg';
 import {
   VueFlux, FluxIndex, FluxPagination, FluxPreloader,
 } from 'vue-flux';
@@ -65,7 +62,7 @@ export default {
     //   pathTexture3,
     // ],
     images: [],
-    transitions: ['book'],
+    transitions: ['swipe'],
   }),
   computed: {
     description() {
@@ -149,7 +146,7 @@ export default {
 }
 .left {
   border: 1px solid orange;
-  flex: 1;
+  flex: 1.5;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -176,8 +173,11 @@ export default {
     margin: 7rem 1rem 1rem 3rem;
   }
   .descProduct {
-    margin: 1rem 3rem;
+    margin: 0 3rem 1rem 3rem;
   }
+  .vue-flux {
+  margin: 0 50px;
+}
 }
 @media (min-width: 1023px) {
   .descProduct {
@@ -191,7 +191,7 @@ export default {
     justify-content: center;
   }
   .title {
-    margin: 0 1rem 0 3rem;
+    margin: 0 1rem 2rem 3rem;
   }
 }
 </style>

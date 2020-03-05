@@ -5,7 +5,10 @@
                    class="wrapTouch"
                    :to="{ name: 'SpecificPage',
                     params: { nameCategory: nameCategory, idProduct: idProduct }}">
-        <canvas />
+        <svg class="svgContainer" width="140" height="140" viewBox="0 0 140 140">
+          <slot name="svgContainer">
+          </slot>
+        </svg>
         <h2 :class="{onFocus: hasFocus}">
           {{ category }}
         </h2>
@@ -21,6 +24,7 @@ export default {
       required: true,
     },
     nameCategory: {
+      type: String,
       required: true,
     },
   },
@@ -59,11 +63,9 @@ export default {
   text-decoration: none;
   color: white;
 }
-canvas {
-  width: 140px;
-  height: 140px;
+.svgContainer {
   margin: auto;
-  border: 1px solid green;
+  border: 1px dashed white;
 }
 h2 {
   text-transform: uppercase;

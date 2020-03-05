@@ -1,6 +1,6 @@
 <template>
   <transition name="fadeTest">
-    <nav v-show="showMenu">
+    <nav class="navLinkContainer" v-show="showMenu">
       <ButtonHome
         class="buttonHome"
         @click.native="$emit('hideMenu')"
@@ -10,18 +10,20 @@
         @click.native="$emit('hideMenu')"
       />
       <router-link
-        class="linktest"
+        class="navLink"
+        :class="{onFocus: FocusId === 1}"
         to="/main"
-        @click.native="$emit('hideMenu')"
-      >
-        Продукция
+        @mouseover.native="mouseOver(1)"
+        @mouseleave.native="mouseLeave"
+        @click.native="$emit('hideMenu')">Продукция
       </router-link>
       <router-link
-        class="linktest"
+        class="navLink"
+        :class="{onFocus: FocusId === 2}"
         to="/contacts"
-        @click.native="$emit('hideMenu')"
-      >
-        Контакты
+        @mouseover.native="mouseOver(2)"
+        @mouseleave.native="mouseLeave"
+        @click.native="$emit('hideMenu')">Контакты
       </router-link>
     </nav>
   </transition>
@@ -42,11 +44,24 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      FocusId: 0,
+    };
+  },
+  methods: {
+    mouseOver(number) {
+      this.FocusId = number;
+    },
+    mouseLeave() {
+      this.FocusId = 0;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-nav {
+.navLinkContainer {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -57,12 +72,35 @@ nav {
   background: black;
   z-index: 50;
 }
-.linktest{
+.navLink{
   text-decoration: none;
-  color: white;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 20px;
   font-size: 3rem;
-  //font-family: 'Caveat', cursive;
+  position: relative;
+}
+.router-link-active {
+  color: white;
+}
+.navLink::after, .navLink::before {
+  content: '';
+  position: absolute;
+  width: 0%;
+  top: 60%;
+  height: 2px;
+  background: #e44a03;
+  transition: all 150ms ease-out;
+  }
+.navLink::after {
+  left: 100%;
+  margin-left: 20px;
+}
+.navLink::before {
+  right: 100%;
+  margin-right: 20px;
+}
+.onFocus::after, .onFocus::before{
+  width: 50px;
 }
 .buttonHome {
   position: absolute;
