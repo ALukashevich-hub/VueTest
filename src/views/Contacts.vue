@@ -7,7 +7,7 @@
 .Contacts {
 height: 100%;
 width: 100%;
-color: white;
+color: var(--main-text-color);
 display: flex;
 flex-flow: column nowrap;
 justify-content: center;

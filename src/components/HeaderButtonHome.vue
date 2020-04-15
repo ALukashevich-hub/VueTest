@@ -1,16 +1,16 @@
 <template>
   <router-link class="logoNav" to="/">
-    <Logo />
+    <BaseLogo />
   </router-link>
 </template>
 
 <script>
-import Logo from '@/components/Logo.vue';
+import BaseLogo from '@/components/BaseLogo.vue';
 
 export default {
-  name: 'ButtonHome',
+  name: 'HeaderButtonHome',
   components: {
-    Logo,
+    BaseLogo,
   },
 };
 </script>

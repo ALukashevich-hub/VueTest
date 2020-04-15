@@ -1,14 +1,14 @@
 <template>
   <div class="navigation">
-    <ButtonHome
+    <HeaderButtonHome
       v-if="VisibleButtonHome"
       class="buttonHome"
     />
-    <ButtonShowMenu
+    <HeaderButtonShowLink
       class="buttonShowMenu"
       @changeShowMenu="changeShowMenu"
     />
-    <NavigationLink
+    <TheHeaderLink
       :show-menu="showMenu"
       class="navigationLink"
       @hideMenu="Hide"
@@ -17,16 +17,16 @@
 </template>
 
 <script>
-import ButtonHome from '@/components/ButtonHome.vue';
-import ButtonShowMenu from '@/components/ButtonShowMenu.vue';
-import NavigationLink from '@/components/NavigationLink.vue';
+import HeaderButtonHome from '@/components/HeaderButtonHome.vue';
+import HeaderButtonShowLink from '@/components/HeaderButtonShowLink.vue';
+import TheHeaderLink from '@/components/TheHeaderLink.vue';
 
 export default {
-  name: 'Navigation',
+  name: 'TheHeader',
   components: {
-    ButtonHome,
-    ButtonShowMenu,
-    NavigationLink,
+    HeaderButtonHome,
+    HeaderButtonShowLink,
+    TheHeaderLink,
   },
   data() {
     return {

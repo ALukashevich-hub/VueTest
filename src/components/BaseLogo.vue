@@ -10,7 +10,7 @@ import * as PIXI from 'pixi.js';
 import pathTexture from '@/assets/bunny.png';
 
 export default {
-  name: 'Logo',
+  name: 'BaseLogo',
   // data() {
   //   return {
   //     app: null,

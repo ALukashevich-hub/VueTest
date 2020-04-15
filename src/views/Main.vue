@@ -9,7 +9,7 @@
       </p>
     </div>
     <div class="middle">
-      <Catalog :nameCategory="this.$store.state.allProduct.gardenSphere.name"
+      <CategoryCard :nameCategory="this.$store.state.allProduct.gardenSphere.name"
                 category="Уличные очаги">
         <template v-slot:svgContainer>
             <symbol id="my-symbol" viewBox="-45 -45 600 600">
@@ -18,16 +18,16 @@
             </symbol>
             <use xlink:href="#my-symbol"/>
         </template>
-      </Catalog>
-      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+      </CategoryCard>
+      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Мангалы" />
-      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Решетки" />
-      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Перила" />
-      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Ворота" />
-      <Catalog :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Калитки" />
     </div>
   </div>
@@ -35,12 +35,12 @@
 
 <script>
 // @ is an alias to /src
-import Catalog from '@/components/CategoryCard.vue';
+import CategoryCard from '@/components/CategoryCard.vue';
 
 export default {
   name: 'MainView',
   components: {
-    Catalog,
+    CategoryCard,
   },
   methods: {
     /*
@@ -57,7 +57,7 @@ export default {
 .mainView {
   width: 100%;
   height: 100%;
-  color: white;
+  color: var(--main-text-color);
   text-align: center;
   display: flex;
   flex-flow: column nowrap;
@@ -73,8 +73,6 @@ export default {
 h1,
 p {
   max-width: 600px;
-  font-family: 'Caveat', cursive;
-  font-weight: normal;
 }
 h1::after {
     content: '';
@@ -82,7 +80,7 @@ h1::after {
     margin: 0 auto;
     width: 50px;
     height: 2px;
-    background: #e44a03;
+    background: var(--hover-color);
 }
 p{
   font-size: 1.5rem;

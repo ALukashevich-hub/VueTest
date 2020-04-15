@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'CategoryCard',
   props: {
     category: {
       type: String,
@@ -61,11 +62,11 @@ export default {
 .wrapTouch {
   display: inline-block;
   text-decoration: none;
-  color: white;
+  color: var(--main-text-color);
 }
 .svgContainer {
   margin: auto;
-  border: 1px dashed white;
+  border: 1px dashed var(--main-text-color);
 }
 h2 {
   text-transform: uppercase;
@@ -80,7 +81,7 @@ h2::after {
   left: 0;
   width: 0%;
   height: 2px;
-  background: #e44a03;
+  background: var(--hover-color);
   transition: all 150ms ease-out;
   }
   .onFocus::after{

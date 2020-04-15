@@ -1,19 +1,19 @@
 <template>
   <main id="app">
-    <Navigation />
+    <TheHeader />
     <router-view />
-    <Background />
+    <TheBackground />
   </main>
 </template>
 
 <script>
-import Background from '@/components/Background.vue';
-import Navigation from '@/components/Navigation.vue';
+import TheBackground from '@/components/TheBackground.vue';
+import TheHeader from '@/components/TheHeader.vue';
 
 export default {
   components: {
-    Background,
-    Navigation,
+    TheBackground,
+    TheHeader,
   },
 };
 </script>
@@ -21,6 +21,7 @@ export default {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Caveat&display=swap&subset=cyrillic');
+@import '@/assets/scss/variables.scss';
 h1, h2, p, a {
   font-family: 'Caveat', cursive;
   font-weight: normal;

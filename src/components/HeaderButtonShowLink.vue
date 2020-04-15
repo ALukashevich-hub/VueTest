@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'ButtonShowMenu',
+  name: 'HeaderButtonShowLink',
   data() {
     return {
       hasFocus: false,
@@ -54,7 +54,7 @@ export default {
 }
 span {
   height: 1px;
-  background: white;
+  background: var(--main-text-color);
   margin: auto 0 auto auto;
   transition: all 200ms ease-out;
 }

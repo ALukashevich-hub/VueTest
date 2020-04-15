@@ -119,7 +119,7 @@ export default {
 .nextView, .previousView, .mainView {
   position: absolute;
   display: block;
-  color: white;
+  color: var(--main-text-color);
   cursor: pointer;
   font-size: 1.7rem;
   font-family: 'Caveat', cursive;
@@ -142,7 +142,7 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column-reverse nowrap;
-  color: white;
+  color: var(--main-text-color);
 }
 .left {
   border: 1px solid orange;

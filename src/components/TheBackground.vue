@@ -9,7 +9,7 @@ import * as particles from 'pixi-particles';
 import pathRain from '@/assets/HardRain.png';
 
 export default {
-  name: 'Background',
+  name: 'TheBackground',
   data() {
     return {
       config: {
@@ -142,7 +142,7 @@ export default {
   top: 0;
   left: 0;
   display: block;
-  background-color: black;
+  background-color: var(--background-color);
   width: 100%;
   height: 100%;
   z-index: -1;

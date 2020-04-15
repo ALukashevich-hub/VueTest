@@ -4,7 +4,7 @@
     @click="goMain"
   >
     <div class="logoHome">
-      <Logo />
+      <BaseLogo />
     </div>
     <h1>сайт/бренд</h1>
     <p>
@@ -17,12 +17,12 @@
 
 <script>
 // @ is an alias to /src
-import Logo from '@/components/Logo.vue';
+import BaseLogo from '@/components/BaseLogo.vue';
 
 export default {
   name: 'Home',
   components: {
-    Logo,
+    BaseLogo,
   },
   methods: {
     goMain() {
@@ -41,7 +41,7 @@ export default {
     display: flex;
     flex-flow: column nowrap;
     text-align: center;
-    color: white;
+    color: var(--main-text-color);
     justify-content: center;
     align-items: center;
 }
@@ -60,7 +60,6 @@ p {
 }
 h1 {
   font-size: 3rem;
-  font-weight: normal;
 }
   @media (min-width: 767px) {
   p{

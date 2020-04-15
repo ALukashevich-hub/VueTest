@@ -1,11 +1,11 @@
 <template>
   <transition name="fadeTest">
     <nav class="navLinkContainer" v-show="showMenu">
-      <ButtonHome
+      <HeaderButtonHome
         class="buttonHome"
         @click.native="$emit('hideMenu')"
       />
-      <ButtonHideMenu
+      <HeaderButtonHideLink
         class="buttonHideMenu"
         @click.native="$emit('hideMenu')"
       />
@@ -30,13 +30,14 @@
 </template>
 
 <script>
-import ButtonHome from '@/components/ButtonHome.vue';
-import ButtonHideMenu from '@/components/ButtonHideMenu.vue';
+import HeaderButtonHome from '@/components/HeaderButtonHome.vue';
+import HeaderButtonHideLink from '@/components/HeaderButtonHideLink.vue';
 
 export default {
+  name: 'TheHeaderLink',
   components: {
-    ButtonHome,
-    ButtonHideMenu,
+    HeaderButtonHome,
+    HeaderButtonHideLink,
   },
   props: {
     showMenu: {
@@ -69,18 +70,18 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: black;
+  background: var(--background-color);
   z-index: 50;
 }
 .navLink{
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--grey-text-color);
   margin-top: 20px;
   font-size: 3rem;
   position: relative;
 }
 .router-link-active {
-  color: white;
+  color: var(--main-text-color);
 }
 .navLink::after, .navLink::before {
   content: '';
@@ -88,7 +89,7 @@ export default {
   width: 0%;
   top: 60%;
   height: 2px;
-  background: #e44a03;
+  background: var(--hover-color);
   transition: all 150ms ease-out;
   }
 .navLink::after {

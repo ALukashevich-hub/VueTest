@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ButtonHideMenu',
+  name: 'HeaderHideLinkButton',
   data() {
     return {
       hasFocus: false,
@@ -40,7 +40,7 @@ export default {
     content    : '';
     width      : 100%;
     height     : 2px;
-    background : white;
+    background : var(--main-text-color);
     position   : absolute;
     top        : 48%;
     transform: rotate(45deg);
