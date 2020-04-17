@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "lodash.throttle": "^4.1.1",
     "normalize.css": "^8.0.1",
     "pixi-particles": "^4.2.0",
     "pixi.js": "^5.2.1",

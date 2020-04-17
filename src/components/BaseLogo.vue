@@ -1,6 +1,6 @@
 <template>
   <canvas
-    id="logo"
+    :class=$style.borderLogo
     ref="logo"
   />
 </template>
@@ -46,15 +46,15 @@ export default {
     app.stage.addChild(bunny);
     app.ticker.add(() => {
     // just for fun, let's rotate mr rabbit a little
-      bunny.rotation += 0.1;
+      bunny.rotation += 0.02;
     });
   },
 
 };
 </script>
 
-<style lang="scss" scoped>
-#logo {
+<style lang="scss" module>
+.borderLogo {
   width: inherit;
   height: inherit;
   border: 1px solid green;

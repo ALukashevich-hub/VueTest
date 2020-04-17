@@ -57,7 +57,6 @@ export default new Vuex.Store({
             {
               TitleSpec: 'Мангал в форме большегруза',
               img: [require('@/assets/img/testBarb4.jpeg'),
-                require('@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg'),
               ],
               descriptions: [
                 { description: 'Описание №1' },

@@ -1,6 +1,6 @@
 <template>
-  <div class="mainView">
-    <div class="middleText">
+  <div class="mainView" @mousemove="mouseHandler">
+    <div class="middleText" :style="Transform">
       <h1>Наша продукция</h1>
       <p>
         Название сайта/бренда - это ремесленническая мастерская,
@@ -8,19 +8,19 @@
         из металла
       </p>
     </div>
-    <div class="middle">
+    <div class="middle" :style="Transform">
       <CategoryCard :nameCategory="this.$store.state.allProduct.gardenSphere.name"
                 category="Уличные очаги">
-        <template v-slot:svgContainer>
-            <symbol id="my-symbol" viewBox="-45 -45 600 600">
-              <path fill="#E34F26" d="M71,460 L30,0 481,0 440,460 255,512"/>
-              <path fill="#EF652A" d="M256,472 L405,431 440,37 256,37"/>
-            </symbol>
-            <use xlink:href="#my-symbol"/>
+        <template #svgContainer>
+          <TheSphere></TheSphere>
         </template>
       </CategoryCard>
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
-                category="Мангалы" />
+                category="Мангалы">
+        <template #svgContainer>
+          <TheSphere></TheSphere>
+        </template>
+      </CategoryCard>
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Решетки" />
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
@@ -36,11 +36,24 @@
 <script>
 // @ is an alias to /src
 import CategoryCard from '@/components/CategoryCard.vue';
+import throttle from 'lodash.throttle';
+import TheSphere from '@/components/TheSphere.vue';
 
 export default {
   name: 'MainView',
   components: {
     CategoryCard,
+    TheSphere,
+  },
+  data() {
+    return {
+      mouseMoveThorttle: throttle(this.mouseLogic, 40),
+      gain: 4,
+      addX: 0,
+      addY: 0,
+      maxX: window.innerWidth,
+      maxY: window.innerHeight,
+    };
   },
   methods: {
     /*
@@ -49,6 +62,21 @@ export default {
       Запросить необходимые данные из Firestore, поместить в store,
       проверить что нет ошибок, перейти по ссылке и отобразить содержимое.
       */
+    mouseLogic(event) {
+    // conver value -1 to +1
+      this.addY = event.clientY / this.maxY * 2 - 1;
+      this.addX = event.clientX / this.maxX * 2 - 1;
+    },
+    mouseHandler(event) {
+      this.mouseMoveThorttle(event);
+    },
+  },
+  computed: {
+    Transform() {
+      return {
+        transform: `translate3d(${this.addX * this.gain}px,${this.addY * this.gain}px, 0px)`,
+      };
+    },
   },
 };
 </script>
