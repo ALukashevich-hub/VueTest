@@ -1,6 +1,6 @@
 <template>
-  <div class="mainView" @mousemove="mouseHandler">
-    <div class="middleText" :style="Transform">
+  <div class="mainView">
+    <div class="middleText">
       <h1>Наша продукция</h1>
       <p>
         Название сайта/бренда - это ремесленническая мастерская,
@@ -8,7 +8,7 @@
         из металла
       </p>
     </div>
-    <div class="middle" :style="Transform">
+    <div class="middle">
       <CategoryCard :nameCategory="this.$store.state.allProduct.gardenSphere.name"
                 category="Уличные очаги">
         <template #svgContainer>
@@ -18,17 +18,33 @@
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
                 category="Мангалы">
         <template #svgContainer>
-          <TheSphere></TheSphere>
+          <TheGrill></TheGrill>
         </template>
       </CategoryCard>
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
-                category="Решетки" />
+                category="Решетки">
+        <template #svgContainer>
+          <TheReshetka></TheReshetka>
+        </template>
+      </CategoryCard>
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
-                category="Перила" />
+                category="Перила">
+        <template #svgContainer>
+          <ThePerila></ThePerila>
+        </template>
+      </CategoryCard>
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
-                category="Ворота" />
+                category="Ворота">
+        <template #svgContainer>
+          <TheGate></TheGate>
+        </template>
+      </CategoryCard>
       <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
-                category="Калитки" />
+                category="Калитки">
+        <template #svgContainer>
+          <TheSmallGate></TheSmallGate>
+        </template>
+      </CategoryCard>
     </div>
   </div>
 </template>
@@ -36,24 +52,23 @@
 <script>
 // @ is an alias to /src
 import CategoryCard from '@/components/CategoryCard.vue';
-import throttle from 'lodash.throttle';
 import TheSphere from '@/components/TheSphere.vue';
+import TheGrill from '@/components/TheGrill.vue';
+import TheReshetka from '@/components/TheReshetka.vue';
+import ThePerila from '@/components/ThePerila.vue';
+import TheGate from '@/components/TheGate.vue';
+import TheSmallGate from '@/components/TheSmallGate.vue';
 
 export default {
   name: 'MainView',
   components: {
     CategoryCard,
     TheSphere,
-  },
-  data() {
-    return {
-      mouseMoveThorttle: throttle(this.mouseLogic, 40),
-      gain: 4,
-      addX: 0,
-      addY: 0,
-      maxX: window.innerWidth,
-      maxY: window.innerHeight,
-    };
+    TheGrill,
+    TheReshetka,
+    ThePerila,
+    TheGate,
+    TheSmallGate,
   },
   methods: {
     /*
@@ -62,21 +77,6 @@ export default {
       Запросить необходимые данные из Firestore, поместить в store,
       проверить что нет ошибок, перейти по ссылке и отобразить содержимое.
       */
-    mouseLogic(event) {
-    // conver value -1 to +1
-      this.addY = event.clientY / this.maxY * 2 - 1;
-      this.addX = event.clientX / this.maxX * 2 - 1;
-    },
-    mouseHandler(event) {
-      this.mouseMoveThorttle(event);
-    },
-  },
-  computed: {
-    Transform() {
-      return {
-        transform: `translate3d(${this.addX * this.gain}px,${this.addY * this.gain}px, 0px)`,
-      };
-    },
   },
 };
 </script>
