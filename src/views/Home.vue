@@ -9,7 +9,7 @@
         <BaseLogo />
       </div>
       <h1>сайт/бренд</h1>
-      <p >
+      <p>
         Приветствую, здесь вы найдете примеры
         декоративных изделий из металла, их описание
         и примерную стоимость конечного продукта
@@ -62,22 +62,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 .home{
     width: 100%;
     height: 100%;
-    display: flex;
     color: var(--main-text-color);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
+    position: absolute;
 }
 .wrap{
     display: flex;
     flex-flow: column nowrap;
     text-align: center;
     align-items: center;
+    max-width: 90%;
 }
 .logoHome {
     width: 100px;
@@ -85,27 +86,27 @@ export default {
 }
 h1{
   margin-bottom: 0;
+  font-size: var(--font-size-xl);
 }
-h1, p{
-  max-width: 90%;
+p{
+  font-size: var(--font-size-xs);
 }
-p {
-  font-size: 1.5rem;
-}
-h1 {
-  font-size: 3rem;
-}
-  @media (min-width: 767px) {
-  p{
-  font-size: 1.7rem;
+@media (min-width: 767px) {
+  .wrap{
+    max-width: 70%;
   }
-  h1, p{
-  max-width: 70%;
+  p{
+  font-size: var(--font-size-sm);
+  }
 }
+@media (min-width: 1023px) {
+  .home{
+    position: initial;
+  }
 }
 @media (min-width: 1399px) {
-  h1, p{
-  max-width: 50%;
+  .wrap{
+    max-width: 50%;
   }
 }
 </style>

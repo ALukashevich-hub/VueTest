@@ -1,10 +1,22 @@
 <template>
   <div class="wrap">
-    <div v-if="idProduct < maxCountProduct"
-         @click="nextPage" class="nextView">Следующий</div>
-    <div v-if="idProduct > 1"
-         @click="previousPage" class="previousView">Предыдущий</div>
-    <router-link class="mainView" to="/main">Главное меню</router-link>
+    <router-link class="mainView" to="/main">Продукция</router-link>
+    <div class="pageLink">
+        <router-link
+          :to="{ name: 'SpecificPage',
+                params: { nameCategory: this.$route.params.nameCategory,
+                idProduct: (this.$route.params.idProduct - 1) }}"
+          v-if="idProduct > 1"
+          class="previousView">Предыдущий
+        </router-link>
+        <router-link
+          :to="{ name: 'SpecificPage',
+                params: { nameCategory: this.$route.params.nameCategory,
+                idProduct: (this.$route.params.idProduct + 1) }}"
+          v-if="idProduct < maxCountProduct"
+          class="nextView">Следующий
+        </router-link>
+    </div>
     <div class="left">
         <vue-flux :options="options" :images="images" :transitions="transitions">
           <template v-slot:preloader>
@@ -88,64 +100,50 @@ export default {
     },
   },
   beforeRouteUpdate(to, from, next) {
-    console.log(this.$route.params.nameCategory);
-    console.log(this.$route.params.idProduct);
-    console.log(`imgArray: ${this.imgArray}`);
-    console.log(`images: ${this.images}`);
+    console.log(`to: ${to.params.idProduct} type ${typeof to.params.idProduct}`);
+    console.log(`from: ${from.params.idProduct}`);
+    if (to.params.idProduct > from.params.idProduct) {
+      this.$store.commit('nextProduct', this.$route.params.nameCategory);
+    } else {
+      this.$store.commit('previousProduct', this.$route.params.nameCategory);
+    }
     this.images = this.imgArray;
     next();
   },
   created() {
     this.images = this.imgArray;
   },
-  methods: {
-    previousPage() {
-      if (this.idProduct > 1) {
-        this.$store.commit('previousProduct', this.$route.params.nameCategory);
-        this.$router.push(`/Specific/${this.$route.params.nameCategory}/${this.idProduct}`);
-      }
-    },
-    nextPage() {
-      if (this.idProduct < this.maxCountProduct) {
-        this.$store.commit('nextProduct', this.$route.params.nameCategory);
-        this.$router.push(`/Specific/${this.$route.params.nameCategory}/${this.idProduct}`);
-      }
-    },
-  },
 };
 </script>
 
 <style lang="scss" scoped>
-.nextView, .previousView, .mainView {
-  position: absolute;
-  display: block;
+.mainView, .previousView, .nextView {
+  text-decoration-color: var(--hover-color);
   color: var(--main-text-color);
-  cursor: pointer;
-  font-size: 1.7rem;
+  font-size: var(--font-size-xs);
   font-family: 'Caveat', cursive;
 }
-.previousView{
-  bottom: 5%;
-  right: 35%;
+.pageLink{
+  display: flex;
 }
-.nextView {
-  bottom: 5%;
-  right: 5%;
+ .previousView{
+  margin: 0 auto 1rem 1rem;
+}
+ .nextView{
+  margin: 0 1rem 1rem auto;
 }
 .mainView {
-  top: 120px;
-  left: 50px;
-  text-decoration: none;
+  position: absolute;
+  top: 80px;
+  left: 20px;
 }
 .wrap {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-flow: column-reverse nowrap;
   color: var(--main-text-color);
 }
 .left {
-  border: 1px solid orange;
   flex: 1.5;
   display: flex;
   flex-flow: column nowrap;
@@ -153,7 +151,6 @@ export default {
   overflow: hidden;
 }
 .right {
-  border: 1px solid red;
   flex: 1;
   display: flex;
   flex-flow: column nowrap;
@@ -161,37 +158,65 @@ export default {
 .vue-flux .flux-index {
   margin-top: auto;
 }
+.vue-flux {
+  z-index: 1;
+  margin: 1rem;
+}
 .descProduct {
   margin: 0 1rem 1rem 1rem;
-  font-size: 1.5rem;
+  font-size: var(--font-size-sm);
 }
 .title {
-  margin: 5rem 1rem 1rem 1rem;
+  margin-top: 8rem;
+  text-align: center;
+  font-size: var(--font-size-lg);
 }
 @media (min-width: 767px) {
   .title {
-    margin: 7rem 1rem 1rem 3rem;
+    margin-top: 10rem;
   }
   .descProduct {
     margin: 0 3rem 1rem 3rem;
   }
   .vue-flux {
-  margin: 0 50px;
-}
+  margin:1rem 3rem;
+  }
+  .previousView{
+    margin: 0 auto 1rem 3rem;
+  }
+  .nextView{
+    margin: 0 3rem 1rem auto;
+  }
+  .mainView {
+    top: 110px;
+    left: 50px;
+  }
 }
 @media (min-width: 1023px) {
-  .descProduct {
-    font-size: 1.7rem;
-    max-width: 80%;
-  }
   .wrap {
     flex-flow: row nowrap;
+    height: 100%;
   }
   .right {
     justify-content: center;
   }
   .title {
-    margin: 0 1rem 2rem 3rem;
+    margin: 0 0 2rem 0;
+  }
+  .mainView, .previousView, .nextView {
+    font-size: var(--font-size-sm);
+  }
+  .pageLink{
+    position: absolute;
+    width: 100%;
+    bottom: 100px;
+    justify-content: center;
+  }
+  .previousView{
+    margin: 0 2rem 0 0;
+  }
+  .nextView{
+    margin: 0 0 0 2rem;
   }
 }
 </style>

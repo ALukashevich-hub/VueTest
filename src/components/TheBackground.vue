@@ -81,6 +81,7 @@ export default {
     };
     const stage = new PIXI.Container();
     const renderer = new PIXI.Renderer(rendererOptions);
+    const ticker = new PIXI.Ticker();
     window.addEventListener('resize', () => {
       wBG = window.innerWidth;
       hBG = window.innerHeight;
@@ -88,57 +89,25 @@ export default {
     });
     // const ticker = new PIXI.Ticker();
     const emitter = new particles.Emitter(
-
-      // The PIXI.Container to put the emitter in
-      // if using blend modes, it's important to put this
-      // on top of a bitmap, and not use the root stage Container
       stage,
-
       // The collection of particle images to use
       [PIXI.Texture.from(pathRain)],
-
-      // Emitter configuration, edit this to change the look
-      // of the emitter
       this.config,
-
     );
-    let elapsed = Date.now();
-
-
-    // Update function every frame
     const update = () => {
-    // Update the next frame
-      requestAnimationFrame(update);
-
-      const now = Date.now();
-
-      // The emitter requires the elapsed
-      // number of seconds since the last update
-      emitter.update((now - elapsed) * 0.001);
-      elapsed = now;
-      // Should re-render the PIXI Stage
+      emitter.update(0.015);
       renderer.render(stage);
     };
-
-    // Start emitting
     emitter.emit = true;
-
-    // Start the update
-    update();
-    // const update = () => {
-    //   emitter.update(0.01);
-    //   renderer.render(stage);
-    // };
-    // emitter.emit = true;
-    // ticker.add(update);
-    // ticker.start();
+    ticker.add(update);
+    ticker.start();
   },
 };
 </script>
 
 <style scoped lang="scss">
 #back {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: block;

@@ -67,17 +67,19 @@ export default {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   background: var(--background-color);
-  z-index: 50;
+  z-index: 5;
+  top: 0;
+  left: 0;
 }
 .navLink{
   text-decoration: none;
   color: var(--grey-text-color);
   margin-top: 20px;
-  font-size: 3rem;
+  font-size: var(--font-size-xl);
   position: relative;
 }
 .router-link-active {
@@ -119,7 +121,7 @@ export default {
 .fadeTest-enter, .fadeTest-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
 }
-@media (min-width: 767px) {
+@media (min-width: 1023px) {
   .buttonHome {
     top: 50px;
     left: 50px;

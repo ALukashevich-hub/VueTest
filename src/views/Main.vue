@@ -84,23 +84,14 @@ export default {
 <style lang="scss" scoped>
 .mainView {
   width: 100%;
-  height: 100%;
   color: var(--main-text-color);
   text-align: center;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+  margin: 5rem 0 5rem 0;
 }
 .middle {
   width: 100%;
-  max-width: 900px;
   display: flex;
   flex-flow: row wrap;
-}
-h1,
-p {
-  max-width: 600px;
 }
 h1::after {
     content: '';
@@ -111,11 +102,26 @@ h1::after {
     background: var(--hover-color);
 }
 p{
-  font-size: 1.5rem;
+  font-size: var(--font-size-xs);
 }
   @media (min-width: 767px) {
   p{
-  font-size: 1.7rem;
+  font-size: var(--font-size-sm);
+  max-width: 600px;
+  margin: auto;
   }
+}
+  @media (min-width: 1023px) {
+  .mainView {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  }
+.middle {
+  max-width: 900px;
+}
 }
 </style>

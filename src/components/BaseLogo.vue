@@ -37,9 +37,9 @@ export default {
       height: 100,
       width: 100,
     });
+    app.renderer.plugins.interaction.autoPreventDefault = false;
     const texture = PIXI.Texture.from(pathTexture);
     const bunny = new PIXI.Sprite(texture);
-    app.renderer.plugins.interaction.autoPreventDefault = false;
     bunny.anchor.set(0.5);
     bunny.x = app.renderer.width / 2;
     bunny.y = app.renderer.height / 2;

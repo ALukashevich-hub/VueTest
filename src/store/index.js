@@ -33,6 +33,15 @@ export default new Vuex.Store({
                 { description: 'Второе описание второго товара' },
               ],
             },
+            {
+              TitleSpec: 'Третья сфера',
+              img: [require('@/assets/img/imgTest4.webp'),
+              ],
+              descriptions: [
+                { description: 'Первое описание третьего товара' },
+                { description: 'Второе описание третьего товара' },
+              ],
+            },
           ],
         },
       barbecues:

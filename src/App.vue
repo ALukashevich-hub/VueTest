@@ -30,7 +30,13 @@ body,
 html,
 #app {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
+}
+@media (min-width: 1023px) {
+  body,
+  html,
+  #app {
+    height: 100%;
+  }
 }
 </style>

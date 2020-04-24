@@ -10,7 +10,6 @@
     />
     <TheHeaderLink
       :show-menu="showMenu"
-      class="navigationLink"
       @hideMenu="Hide"
     />
   </div>
@@ -51,16 +50,32 @@ export default {
 
 <style lang="scss" scoped>
 .buttonHome {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
 }
 .buttonShowMenu {
-  position: absolute;
-  top: 20px;
+  position: fixed;
+  top: 30px;
   right: 20px;
 }
+.navigation{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: hsla(0, 0%, 0%, 0.8);
+  z-index: 3;
+}
 @media (min-width: 767px) {
+
+}
+@media (min-width: 1023px) {
+  .navigation{
+    position: initial;
+    height: 0;
+  }
   .buttonHome {
     top: 50px;
     left: 50px;

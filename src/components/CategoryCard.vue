@@ -93,4 +93,7 @@ h2::after {
     margin: 50px auto 0 auto;
   }
 }
+@media (min-width: 1023px) {
+
+}
 </style>
