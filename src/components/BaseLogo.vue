@@ -7,49 +7,131 @@
 
 <script>
 import * as PIXI from 'pixi.js';
-import pathTexture from '@/assets/bunny.png';
+import * as particles from 'pixi-particles';
+// import pathTexture from '@/assets/bunny.png';
+// import pathTexture1 from '@/assets/Sphere.svg';
+import pathTexture2 from '@/assets/Fire.png';
+import pathTexture3 from '@/assets/particle.png';
+import pathTexture4 from '@/assets/FrontSphere.svg';
+import pathTexture5 from '@/assets/BackSphere.svg';
 
 export default {
   name: 'BaseLogo',
-  // data() {
-  //   return {
-  //     app: null,
-  //     bunny: null,
-  //     texture: null,
-  //   };
-  // },
   // mounted() {
-  //   this.app = new PIXI.Application({
+  //   const app = new PIXI.Application({
   //     transparent: true,
   //     view: this.$refs.logo,
+  //     height: 200,
+  //     width: 200,
   //   });
-  //   this.texture = PIXI.Texture.from(pathTexture);
-  //   this.bunny = new PIXI.Sprite(this.texture);
-  //   this.bunny.x = this.app.renderer.width / 2;
-  //   this.bunny.y = this.app.renderer.height / 2;
-  //   this.app.stage.addChild(this.bunny);
-  //   this.RunPixi();
+  //   app.renderer.plugins.interaction.autoPreventDefault = false;
+  //   const texture = PIXI.Texture.from(pathTexture);
+  //   const bunny = new PIXI.Sprite(texture);
+  //   bunny.anchor.set(0.5);
+  //   bunny.x = app.renderer.width / 2;
+  //   bunny.y = app.renderer.height / 2;
+  //   app.stage.addChild(bunny);
+  //   app.ticker.add(() => {
+  //   // just for fun, let's rotate mr rabbit a little
+  //     bunny.rotation += 0.02;
+  //   });
   // },
-  mounted() {
-    const app = new PIXI.Application({
-      transparent: true,
-      view: this.$refs.logo,
-      height: 100,
-      width: 100,
-    });
-    app.renderer.plugins.interaction.autoPreventDefault = false;
-    const texture = PIXI.Texture.from(pathTexture);
-    const bunny = new PIXI.Sprite(texture);
-    bunny.anchor.set(0.5);
-    bunny.x = app.renderer.width / 2;
-    bunny.y = app.renderer.height / 2;
-    app.stage.addChild(bunny);
-    app.ticker.add(() => {
-    // just for fun, let's rotate mr rabbit a little
-      bunny.rotation += 0.02;
-    });
+  data() {
+    return {
+      config: {
+        alpha: {
+          start: 0.7,
+          end: 0,
+        },
+        scale: {
+          start: 0.05,
+          end: 0.6,
+          minimumScaleMultiplier: 1.5,
+        },
+        color: {
+          // start: '#bdb82d',
+          start: '#5d5a00',
+          end: '#d64a04',
+        },
+        speed: {
+          start: 10,
+          end: 300,
+          minimumSpeedMultiplier: 1,
+        },
+        acceleration: {
+          x: 0,
+          y: -100,
+        },
+        maxSpeed: 0,
+        startRotation: {
+          min: 240,
+          max: 290,
+        },
+        noRotation: false,
+        rotationSpeed: {
+          min: 10,
+          max: 30,
+        },
+        lifetime: {
+          min: 0.2,
+          max: 1.5,
+        },
+        blendMode: 'add',
+        frequency: 0.002,
+        emitterLifetime: -1,
+        maxParticles: 600,
+        pos: {
+          x: 150,
+          y: 230,
+        },
+        addAtBack: false,
+        spawnType: 'circle',
+        spawnCircle: {
+          x: 0,
+          y: 0,
+          r: 8,
+        },
+      },
+    };
   },
-
+  mounted() {
+    const canvas = this.$refs.logo;
+    // Basic PIXI Setup
+    const rendererOptions = {
+      transparent: true,
+      view: canvas,
+      height: 300,
+      width: 300,
+    };
+    const stage = new PIXI.Container();
+    const renderer = new PIXI.Renderer(rendererOptions);
+    const ticker = new PIXI.Ticker();
+    const emitter = new particles.Emitter(
+      stage,
+      [PIXI.Texture.from(pathTexture2), PIXI.Texture.from(pathTexture3)],
+      this.config,
+    );
+    const backTexture = PIXI.Texture.from(pathTexture5);
+    const frontTexture = PIXI.Texture.from(pathTexture4);
+    const backSphere = new PIXI.Sprite(backTexture);
+    const frontSphere = new PIXI.Sprite(frontTexture);
+    backSphere.x = renderer.width / 6;
+    backSphere.y = renderer.height / 10;
+    frontSphere.x = renderer.width / 6;
+    frontSphere.y = renderer.height / 10;
+    frontSphere.zIndex = 1;
+    stage.sortableChildren = true;
+    stage.addChild(backSphere);
+    stage.addChild(frontSphere);
+    renderer.plugins.interaction.autoPreventDefault = false;
+    const update = () => {
+      emitter.update(0.015);
+      renderer.render(stage);
+    };
+    emitter.emit = true;
+    ticker.add(update);
+    ticker.start();
+  },
 };
 </script>
 
@@ -57,6 +139,6 @@ export default {
 .borderLogo {
   width: inherit;
   height: inherit;
-  border: 1px solid green;
+ // border: 1px solid green;
 }
 </style>

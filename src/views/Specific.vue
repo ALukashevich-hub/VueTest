@@ -1,18 +1,18 @@
 <template>
-  <div class="wrap">
-    <router-link class="mainView" to="/main">Продукция</router-link>
+  <main class="wrap">
+    <router-link class="mainView" to="/product">Продукция</router-link>
     <div class="pageLink">
         <router-link
           :to="{ name: 'SpecificPage',
                 params: { nameCategory: this.$route.params.nameCategory,
-                idProduct: (this.$route.params.idProduct - 1) }}"
+                idProduct: prevPage() }}"
           v-if="idProduct > 1"
           class="previousView">Предыдущий
         </router-link>
         <router-link
           :to="{ name: 'SpecificPage',
                 params: { nameCategory: this.$route.params.nameCategory,
-                idProduct: (this.$route.params.idProduct + 1) }}"
+                idProduct: nextPage() }}"
           v-if="idProduct < maxCountProduct"
           class="nextView">Следующий
         </router-link>
@@ -39,7 +39,7 @@
         {{item.description}}
       </p>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -68,11 +68,6 @@ export default {
       lazyLoad: true,
       lazyLoadAfter: 3,
     },
-    // images: [
-    //   require('@/assets/1557841421_krasivye-foto_xaxa-net.ru-40.jpg'),
-    //   pathTexture2,
-    //   pathTexture3,
-    // ],
     images: [],
     transitions: ['swipe'],
   }),
@@ -97,6 +92,14 @@ export default {
     imgArray() {
       return this.$store.state.allProduct[this.$route.params.nameCategory]
         .info[this.idProduct - 1].img;
+    },
+  },
+  methods: {
+    nextPage() {
+      return Number(this.$route.params.idProduct) + 1;
+    },
+    prevPage() {
+      return Number(this.$route.params.idProduct) - 1;
     },
   },
   beforeRouteUpdate(to, from, next) {
@@ -164,7 +167,7 @@ export default {
 }
 .descProduct {
   margin: 0 1rem 1rem 1rem;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 .title {
   margin-top: 8rem;

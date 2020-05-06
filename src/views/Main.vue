@@ -1,5 +1,5 @@
 <template>
-  <div class="mainView">
+  <main class="mainView">
     <div class="middleText">
       <h1>Наша продукция</h1>
       <p>
@@ -9,44 +9,44 @@
       </p>
     </div>
     <div class="middle">
-      <CategoryCard :nameCategory="this.$store.state.allProduct.gardenSphere.name"
+      <CategoryCard nameCategory="garden-sphere"
                 category="Уличные очаги">
         <template #svgContainer>
           <TheSphere></TheSphere>
         </template>
       </CategoryCard>
-      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard nameCategory="barbecues"
                 category="Мангалы">
         <template #svgContainer>
           <TheGrill></TheGrill>
         </template>
       </CategoryCard>
-      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard nameCategory="windows-grill"
                 category="Решетки">
         <template #svgContainer>
           <TheReshetka></TheReshetka>
         </template>
       </CategoryCard>
-      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard nameCategory="railing"
                 category="Перила">
         <template #svgContainer>
           <ThePerila></ThePerila>
         </template>
       </CategoryCard>
-      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard nameCategory="main-gates"
                 category="Ворота">
         <template #svgContainer>
           <TheGate></TheGate>
         </template>
       </CategoryCard>
-      <CategoryCard :nameCategory="this.$store.state.allProduct.barbecues.name"
+      <CategoryCard nameCategory="entrance-gates"
                 category="Калитки">
         <template #svgContainer>
           <TheSmallGate></TheSmallGate>
         </template>
       </CategoryCard>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

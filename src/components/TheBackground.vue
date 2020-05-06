@@ -18,8 +18,8 @@ export default {
           end: 0,
         },
         scale: {
-          start: 0.25,
-          end: 0.1,
+          start: 0.2,
+          end: 0.05,
           minimumScaleMultiplier: 1,
         },
         color: {
@@ -49,8 +49,8 @@ export default {
           min: 3,
           max: 7,
         },
-        blendMode: 'add',
-        frequency: 0.07,
+        blendMode: 'normal',
+        frequency: 0.1,
         emitterLifetime: -1,
         maxParticles: 600,
         pos: {
@@ -72,6 +72,8 @@ export default {
     const canvas = this.$refs.background;
     let wBG = window.innerWidth;
     let hBG = window.innerHeight;
+    this.config.spawnRect.w = window.innerWidth;
+    this.config.spawnRect.y = window.innerHeight;
     // Basic PIXI Setup
     const rendererOptions = {
       transparent: true,
@@ -82,18 +84,13 @@ export default {
     const stage = new PIXI.Container();
     const renderer = new PIXI.Renderer(rendererOptions);
     const ticker = new PIXI.Ticker();
-    window.addEventListener('resize', () => {
-      wBG = window.innerWidth;
-      hBG = window.innerHeight;
-      renderer.resize(wBG, hBG);
-    });
-    // const ticker = new PIXI.Ticker();
     const emitter = new particles.Emitter(
       stage,
       // The collection of particle images to use
       [PIXI.Texture.from(pathRain)],
       this.config,
     );
+    // const ticker = new PIXI.Ticker();
     const update = () => {
       emitter.update(0.015);
       renderer.render(stage);
@@ -101,6 +98,11 @@ export default {
     emitter.emit = true;
     ticker.add(update);
     ticker.start();
+    window.addEventListener('resize', () => {
+      wBG = window.innerWidth;
+      hBG = window.innerHeight;
+      renderer.resize(wBG, hBG);
+    });
   },
 };
 </script>

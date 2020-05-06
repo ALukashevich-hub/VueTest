@@ -1,10 +1,6 @@
 <template>
   <transition name="fadeTest">
     <nav class="navLinkContainer" v-show="showMenu">
-      <HeaderButtonHome
-        class="buttonHome"
-        @click.native="$emit('hideMenu')"
-      />
       <HeaderButtonHideLink
         class="buttonHideMenu"
         @click.native="$emit('hideMenu')"
@@ -12,7 +8,7 @@
       <router-link
         class="navLink"
         :class="{onFocus: FocusId === 1}"
-        to="/main"
+        to="/product"
         @mouseover.native="mouseOver(1)"
         @mouseleave.native="mouseLeave"
         @click.native="$emit('hideMenu')">Продукция
@@ -30,13 +26,11 @@
 </template>
 
 <script>
-import HeaderButtonHome from '@/components/HeaderButtonHome.vue';
 import HeaderButtonHideLink from '@/components/HeaderButtonHideLink.vue';
 
 export default {
   name: 'TheHeaderLink',
   components: {
-    HeaderButtonHome,
     HeaderButtonHideLink,
   },
   props: {
@@ -104,11 +98,6 @@ export default {
 }
 .onFocus::after, .onFocus::before{
   width: 50px;
-}
-.buttonHome {
-  position: absolute;
-  top: 20px;
-  left: 20px;
 }
 .buttonHideMenu {
   position: absolute;

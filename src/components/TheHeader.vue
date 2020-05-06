@@ -2,6 +2,7 @@
   <div class="navigation">
     <HeaderButtonHome
       v-if="VisibleButtonHome"
+      @click.native="Hide"
       class="buttonHome"
     />
     <HeaderButtonShowLink
@@ -51,6 +52,7 @@ export default {
 <style lang="scss" scoped>
 .buttonHome {
   position: fixed;
+  z-index: 10;
   top: 20px;
   left: 20px;
 }

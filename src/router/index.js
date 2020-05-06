@@ -11,7 +11,7 @@ const routes = [
     component: Home,
   },
   {
-    path: '/Contacts',
+    path: '/contacts',
     name: 'Contacts',
 
     // route level code-splitting
@@ -22,7 +22,7 @@ const routes = [
     },
   },
   {
-    path: '/main',
+    path: '/product',
     name: 'mainPage',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -32,7 +32,7 @@ const routes = [
     },
   },
   {
-    path: '/Specific/:nameCategory/:idProduct',
+    path: '/:nameCategory/:idProduct',
     name: 'SpecificPage',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

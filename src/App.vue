@@ -1,9 +1,9 @@
 <template>
-  <main id="app">
+  <div id="app">
     <TheHeader />
     <router-view />
     <TheBackground />
-  </main>
+  </div>
 </template>
 
 <script>
@@ -22,6 +22,7 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Caveat&display=swap&subset=cyrillic');
 @import '@/assets/scss/variables.scss';
+@import '~normalize.css';
 h1, h2, p, a {
   font-family: 'Caveat', cursive;
   font-weight: normal;

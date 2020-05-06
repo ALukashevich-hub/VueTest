@@ -1,9 +1,9 @@
 <template>
-  <div class="Contacts">
+  <main :class="$style.Contacts">
     <h1>This is an about page</h1>
-  </div>
+  </main>
 </template>
-<style lang="scss" scoped>
+<style lang="scss" module>
 .Contacts {
 height: 100%;
 width: 100%;

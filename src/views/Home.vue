@@ -1,5 +1,5 @@
 <template>
-  <div
+  <main
     class="home"
     @mousemove="mouseHandler"
     @click="goMain"
@@ -15,7 +15,7 @@
         и примерную стоимость конечного продукта
       </p>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     goMain() {
-      this.$router.push('main');
+      this.$router.push('product');
     },
     mouseLogic(event) {
       // conver value -1 to +1
@@ -81,8 +81,8 @@ export default {
     max-width: 90%;
 }
 .logoHome {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
 }
 h1{
   margin-bottom: 0;
