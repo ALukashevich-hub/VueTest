@@ -22,6 +22,7 @@
 // @ is an alias to /src
 import BaseLogo from '@/components/BaseLogo.vue';
 import throttle from 'lodash.throttle';
+import debounce from 'lodash.debounce';
 
 export default {
   name: 'Home',
@@ -30,26 +31,33 @@ export default {
   },
   data() {
     return {
-      mouseMoveThorttle: throttle(this.mouseLogic, 40),
       gain: 4,
       addX: 0,
       addY: 0,
-      maxX: window.innerWidth,
-      maxY: window.innerHeight,
+      maxX: 0,
+      maxY: 0,
     };
+  },
+  created() {
+    this.maxX = window.innerWidth;
+    this.maxY = window.innerHeight;
+    window.addEventListener('resize', this.resizeDebounce);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.resizeDebounce);
   },
   methods: {
     goMain() {
       this.$router.push('product');
     },
-    mouseLogic(event) {
-      // conver value -1 to +1
+    mouseHandler: throttle(function (event) {
       this.addY = event.clientY / this.maxY * 2 - 1;
       this.addX = event.clientX / this.maxX * 2 - 1;
-    },
-    mouseHandler(event) {
-      this.mouseMoveThorttle(event);
-    },
+    }, 40),
+    resizeDebounce: debounce(function () {
+      this.maxX = window.innerWidth;
+      this.maxY = window.innerHeight;
+    }, 200),
   },
   computed: {
     Transform() {

@@ -6,7 +6,10 @@
 <script>
 import * as PIXI from 'pixi.js';
 import * as particles from 'pixi-particles';
+import debounce from 'lodash.debounce';
 import pathRain from '@/assets/HardRain.png';
+// import pathFire from '@/assets/Fire.png';
+import pathParticle from '@/assets/particle.png';
 
 export default {
   name: 'TheBackground',
@@ -15,25 +18,25 @@ export default {
       config: {
         alpha: {
           start: 1,
-          end: 0,
+          end: 0.5,
         },
         scale: {
-          start: 0.2,
+          start: 0.15,
           end: 0.05,
           minimumScaleMultiplier: 1,
         },
         color: {
-          start: '#d45d22',
-          end: '#f50a0a',
+          start: '#f29218',
+          end: '#e40a0a',
         },
         speed: {
           start: 400,
-          end: 200,
+          end: 10,
           minimumSpeedMultiplier: 1,
         },
         acceleration: {
-          x: 80,
-          y: 20,
+          x: 40,
+          y: 40,
         },
         maxSpeed: 800,
         startRotation: {
@@ -46,11 +49,11 @@ export default {
           max: 0,
         },
         lifetime: {
-          min: 3,
+          min: 2,
           max: 7,
         },
         blendMode: 'normal',
-        frequency: 0.1,
+        frequency: 0.03,
         emitterLifetime: -1,
         maxParticles: 600,
         pos: {
@@ -63,7 +66,7 @@ export default {
           x: 0,
           y: 1000,
           w: 1800,
-          h: 60,
+          h: 50,
         },
       },
     };
@@ -87,7 +90,8 @@ export default {
     const emitter = new particles.Emitter(
       stage,
       // The collection of particle images to use
-      [PIXI.Texture.from(pathRain)],
+      [PIXI.Texture.from(pathRain),
+        PIXI.Texture.from(pathParticle)],
       this.config,
     );
     // const ticker = new PIXI.Ticker();
@@ -98,11 +102,14 @@ export default {
     emitter.emit = true;
     ticker.add(update);
     ticker.start();
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', debounce(() => {
       wBG = window.innerWidth;
       hBG = window.innerHeight;
+      this.config.spawnRect.w = window.innerWidth;
+      this.config.spawnRect.y = window.innerHeight;
+      emitter.parseSpawnType(this.config);
       renderer.resize(wBG, hBG);
-    });
+    }, 200));
   },
 };
 </script>

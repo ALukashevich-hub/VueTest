@@ -170,13 +170,13 @@ export default {
   font-size: var(--font-size-xs);
 }
 .title {
-  margin-top: 8rem;
-  text-align: center;
-  font-size: var(--font-size-lg);
+  margin: 8rem 1rem 1rem 1rem;
+  font-size: var(--font-size-md);
 }
 @media (min-width: 767px) {
   .title {
-    margin-top: 10rem;
+    margin: 10rem 3rem 1rem 3rem;
+    font-size: var(--font-size-lg);
   }
   .descProduct {
     margin: 0 3rem 1rem 3rem;
@@ -204,7 +204,7 @@ export default {
     justify-content: center;
   }
   .title {
-    margin: 0 0 2rem 0;
+    margin: 0 3rem 1rem 3rem;
   }
   .mainView, .previousView, .nextView {
     font-size: var(--font-size-sm);

@@ -8,8 +8,6 @@
 <script>
 import * as PIXI from 'pixi.js';
 import * as particles from 'pixi-particles';
-// import pathTexture from '@/assets/bunny.png';
-// import pathTexture1 from '@/assets/Sphere.svg';
 import pathTexture2 from '@/assets/Fire.png';
 import pathTexture3 from '@/assets/particle.png';
 import pathTexture4 from '@/assets/FrontSphere.svg';
@@ -17,25 +15,6 @@ import pathTexture5 from '@/assets/BackSphere.svg';
 
 export default {
   name: 'BaseLogo',
-  // mounted() {
-  //   const app = new PIXI.Application({
-  //     transparent: true,
-  //     view: this.$refs.logo,
-  //     height: 200,
-  //     width: 200,
-  //   });
-  //   app.renderer.plugins.interaction.autoPreventDefault = false;
-  //   const texture = PIXI.Texture.from(pathTexture);
-  //   const bunny = new PIXI.Sprite(texture);
-  //   bunny.anchor.set(0.5);
-  //   bunny.x = app.renderer.width / 2;
-  //   bunny.y = app.renderer.height / 2;
-  //   app.stage.addChild(bunny);
-  //   app.ticker.add(() => {
-  //   // just for fun, let's rotate mr rabbit a little
-  //     bunny.rotation += 0.02;
-  //   });
-  // },
   data() {
     return {
       config: {
