@@ -126,6 +126,15 @@ export default {
   font-size: var(--font-size-xs);
   font-family: 'Caveat', cursive;
 }
+.fadeTransition2-enter-active {
+  transition: opacity 0.7s;
+}
+.fadeTransition2-leave-active {
+  transition: opacity 0.3s;
+}
+.fadeTransition2-enter, .fadeTransition2-leave-to {
+  opacity: 0;
+}
 .pageLink{
   display: flex;
 }

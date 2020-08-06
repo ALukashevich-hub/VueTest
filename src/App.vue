@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <TheHeader />
+    <transition name="fadeTransition" mode="out-in" appear >
     <router-view />
+    </transition>
     <TheBackground />
   </div>
 </template>
@@ -32,6 +34,15 @@ html,
 #app {
   width: 100%;
   /*overflow: hidden;*/
+}
+.fadeTransition-enter-active {
+  transition: opacity 0.7s;
+}
+.fadeTransition-leave-active {
+  transition: opacity 0.3s;
+}
+.fadeTransition-enter, .fadeTransition-leave-to {
+  opacity: 0;
 }
 @media (min-width: 1023px) {
   body,

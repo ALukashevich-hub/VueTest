@@ -5,35 +5,63 @@
     <p :class="$style.someText">Анатолий: +375 (29) xxx-xx-xx</p>
     <p :class="$style.someText">Обратная связь</p>
     <form @submit.prevent="sendData" :class="$style.mainForm">
-      <input type="text"
+      <div :class="$style.inputBlockShort">
+        <label for="firstName"
+        :class="[$style.labelText, $style.required, {[$style.hide]: !message.firstName}]">
+        Имя</label>
+        <input type="text"
+          required
+          id="firstName"
+          name="firstName"
+          v-model="message.firstName"
+          placeholder="Имя"
+          :class="$style.inputTypeShort">
+          <label :class="$style.required"></label>
+      </div>
+      <div :class="$style.inputBlockShort">
+        <label for="lastName"
+        :class="[$style.labelText, {[$style.hide]: !message.lastName}]">
+        Фамилия</label>
+        <input type="text"
+          id="lastName"
+          name="lastName"
+          v-model="message.lastName"
+          placeholder="Фамилия"
+          :class="$style.inputTypeShort">
+      </div>
+      <div :class="$style.inputBlockShort">
+        <label for="phone"
+        :class="[$style.labelText, $style.required, {[$style.hide]: !message.phone}]">
+        Телефон</label>
+        <input type="tel"
+        id="phone"
         required
-        name="firstName"
-        v-model="message.firstName"
-        placeholder="Имя"
+        name="phone"
+        v-model="message.phone"
+        placeholder="Телефон"
         :class="$style.inputTypeShort">
-      <input type="text"
-        name="lastName"
-        v-model="message.lastName"
-        placeholder="Фамилия"
+        <label :class="$style.required"></label>
+      </div>
+      <div :class="$style.inputBlockShort">
+        <label for="email" :class="[$style.labelText, {[$style.hide]: !message.email}]">
+        Почта</label>
+        <input type="email"
+        id="email"
+        name="email"
+        v-model="message.email"
+        placeholder="Почта"
         :class="$style.inputTypeShort">
-      <input type="tel"
-       required
-       name="phone"
-       v-model="message.phone"
-       placeholder="Телефон"
-       :class="$style.inputTypeShort">
-      <input type="email"
-       name="email"
-       v-model="message.email"
-       placeholder="Почта"
-       :class="$style.inputTypeShort">
-      <textarea name="description"
-      v-model="message.description"
-      maxlength="500"
-      rows="5"
-      placeholder="Запрос"
-      :class="$style.inputTypeLong"></textarea>
-      <label :class="$style.labelRequiredBefore">Обязательное поле</label>
+      </div>
+      <div :class="$style.inputBlockLong">
+        <label for="email" :class="[$style.labelText, {[$style.hide]: !message.description}]">
+        Запрос</label>
+        <textarea name="description"
+        v-model="message.description"
+        maxlength="500"
+        rows="5"
+        placeholder="Запрос"
+        :class="$style.inputTypeLong"></textarea>
+      </div>
       <input type="submit" :class="$style.inputSubmit" value="Отправить сообщение">
     </form>
   </main>
@@ -101,33 +129,46 @@ export default {
   margin: 0 0 1rem 0;
   font-size: var(--font-size-xs);
 }
-.labelRequiredBefore::before {
-  color: hsl(9.6, 100%, 50%);
-  content: "* ";
+.labelText {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 0.2rem;
+  font-size: 0.8rem;
+  color: var(--hover-color);
+  transition: opacity 400ms ease-in, top 400ms ease-out;
+  top: 0;
 }
-.labelRequired::after {
-  color: hsl(9.6, 100%, 50%);
+.required::after {
+  color: var(--hover-color);
   content: " *";
 }
 .inputTypeShort {
-  width: 100%;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
   background: transparent;
+  box-sizing: border-box;
   color: #ffffff;
+  width: 95%;
+}
+.inputBlockShort {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 0.2rem;
 }
 .inputTypeLong {
-  width: 100%;
-  margin-bottom: 1rem;
+  width: 95%;
+  resize: none;
   box-sizing: border-box;
   background: transparent;
   color: #ffffff;
 }
+.inputBlockLong {
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 1rem;
+}
 .inputSubmit {
-  width: 50%;
+  width: 95%;
   height: 2rem;
   margin-bottom: 1rem;
-  margin-left: auto;
   border: 1px green solid;
   box-sizing: border-box;
   background: transparent;
@@ -137,6 +178,12 @@ export default {
 .headText {
   margin: 0 0 1rem 0;
   font-size: var(--font-size-lg);
+}
+.hide {
+  //visibility: hidden;
+  opacity: 0;
+  top: 20px;
+  transition: opacity 400ms ease-out, top 400ms ease-in;
 }
 @media (min-width: 767px) {
 .Contacts {
@@ -149,21 +196,28 @@ export default {
   justify-content: space-between;
   width: 70%;
 }
-.inputTypeShort {
+.inputBlockShort {
   width: 49%;
+}
+.inputTypeLong {
+  width: 97.5%;
 }
 .inputSubmit {
   width: 40%;
+  margin-left: auto;
+  margin-right: 1rem;
 }
 }
 @media (min-width: 1023px) {
-.Contacts {
-  position: initial;
-}
 .mainForm {
   width: 50%;
 }
-.inputSubmit {
+.Contacts {
+  position: initial;
+}
+}
+@media (min-width: 1439px) {
+.mainForm {
   width: 40%;
 }
 }

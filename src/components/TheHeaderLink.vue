@@ -104,8 +104,11 @@ export default {
   top: 20px;
   right: 20px;
 }
-.fadeTest-enter-active, .fadeTest-leave-active {
-  transition: opacity .5s;
+.fadeTest-enter-active {
+  transition: opacity 0.5s;
+}
+.fadeTest-leave-active {
+  transition: opacity 0.7s ease-in;
 }
 .fadeTest-enter, .fadeTest-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
