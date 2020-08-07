@@ -2,18 +2,20 @@
   <main
     class="home"
     @mousemove="mouseHandler"
-    @click="goMain"
   >
     <div class="wrap" :style="Transform">
       <div class="logoHome">
         <BaseLogo />
       </div>
-      <h1>сайт/бренд</h1>
-      <p>
+      <h1 class="logoName">сайт/бренд</h1>
+      <p class="logoDesc">
         Приветствую, здесь вы найдете примеры
         декоративных изделий из металла, их описание
         и примерную стоимость конечного продукта
       </p>
+      <router-link to="/product"
+      class="productLink"><span class="linkLabel">Продукция</span>
+      </router-link>
     </div>
   </main>
 </template>
@@ -47,9 +49,6 @@ export default {
     window.removeEventListener('resize', this.resizeDebounce);
   },
   methods: {
-    goMain() {
-      this.$router.push('product');
-    },
     mouseHandler: throttle(function (event) {
       this.addY = event.clientY / this.maxY * 2 - 1;
       this.addX = event.clientX / this.maxX * 2 - 1;
@@ -74,7 +73,6 @@ export default {
     width: 100%;
     height: 100%;
     color: var(--main-text-color);
-    cursor: pointer;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -86,25 +84,58 @@ export default {
     flex-flow: column nowrap;
     text-align: center;
     align-items: center;
-    max-width: 90%;
+    width: 90%;
+    max-width: 500px;
 }
 .logoHome {
     width: 200px;
     height: 200px;
+    margin-bottom: 1rem;
 }
-h1{
-  margin-bottom: 0;
+.logoName{
+  margin: 0 0 1rem 0;
   font-size: var(--font-size-xl);
 }
-p{
+.logoDesc{
+  margin: 0 0 1rem 0;
   font-size: var(--font-size-xs);
+}
+.productLink {
+  width: 100%;
+  max-width: 400px;
+  height: 2.5rem;
+  display: flex;
+  text-decoration: none;
+  font-size: var(--font-size-xs);
+  box-sizing: border-box;
+  background: transparent;
+  color: #ffffff;
+  box-shadow: none;
+  border: 2px green outset;
+  box-shadow: 0px 0px 20px 5px green;
+  outline: none;
+  &:hover {
+    box-shadow: 0px 0px 20px 5px rgb(137, 182, 13);
+  }
+  &:active {
+    background-color: rgb(137, 182, 13);
+    border-style: inset;
+  }
+  .linkLabel {
+    margin: auto;
+  }
 }
 @media (min-width: 767px) {
   .wrap{
-    max-width: 70%;
+    max-width: none;
+    width: 70%;
   }
-  p{
-  font-size: var(--font-size-sm);
+  .logoDesc{
+    font-size: var(--font-size-sm);
+  }
+  .productLink {
+    max-width: none;
+    width: 40%;
   }
 }
 @media (min-width: 1023px) {

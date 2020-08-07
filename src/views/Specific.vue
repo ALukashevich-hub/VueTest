@@ -28,6 +28,9 @@
           <template v-slot:pagination>
             <flux-pagination />
           </template>
+          <template v-slot:controls>
+            <flux-controls />
+          </template>
         </vue-flux>
     </div>
     <div class="right">
@@ -44,7 +47,7 @@
 
 <script>
 import {
-  VueFlux, FluxIndex, FluxPagination, FluxPreloader,
+  VueFlux, FluxIndex, FluxPagination, FluxPreloader, FluxControls,
 } from 'vue-flux';
 
 export default {
@@ -54,14 +57,15 @@ export default {
     FluxIndex,
     FluxPagination,
     FluxPreloader,
+    FluxControls,
   },
   data: () => ({
     options: {
       allowFullscreen: true,
       allowToSkipTransition: true,
-      autohideTime: 0,
+      autohideTime: 5000,
       autoplay: false,
-      bindKeys: false,
+      bindKeys: true,
       delay: 5000,
       enableGestures: true,
       infinite: true,

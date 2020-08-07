@@ -3,7 +3,7 @@
     <nav class="navLinkContainer" v-show="showMenu">
       <HeaderButtonHideLink
         class="buttonHideMenu"
-        @click.native="$emit('hideMenu')"
+        @click.native="$emit('hide-menu')"
       />
       <router-link
         class="navLink"
@@ -11,7 +11,7 @@
         to="/product"
         @mouseover.native="mouseOver(1)"
         @mouseleave.native="mouseLeave"
-        @click.native="$emit('hideMenu')">Продукция
+        @click.native="$emit('hide-menu')">Продукция
       </router-link>
       <router-link
         class="navLink"
@@ -19,7 +19,7 @@
         to="/contacts"
         @mouseover.native="mouseOver(2)"
         @mouseleave.native="mouseLeave"
-        @click.native="$emit('hideMenu')">Контакты
+        @click.native="$emit('hide-menu')">Контакты
       </router-link>
     </nav>
   </transition>

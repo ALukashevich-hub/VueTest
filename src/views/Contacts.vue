@@ -62,7 +62,9 @@
         placeholder="Запрос"
         :class="$style.inputTypeLong"></textarea>
       </div>
-      <input type="submit" :class="$style.inputSubmit" value="Отправить сообщение">
+      <input type="submit"
+       :class="$style.inputSubmit"
+        value="Отправить сообщение">
     </form>
   </main>
 </template>
@@ -169,18 +171,27 @@ export default {
   width: 95%;
   height: 2rem;
   margin-bottom: 1rem;
-  border: 1px green solid;
   box-sizing: border-box;
   background: transparent;
   color: #ffffff;
   cursor: pointer;
+  box-shadow: none;
+  border: 2px green outset;
+  box-shadow: 0px 0px 20px 5px green;
+  outline: none;
+}
+.inputSubmit:hover {
+  box-shadow: 0px 0px 20px 5px rgb(137, 182, 13);
+}
+.inputSubmit:active {
+  background-color: rgb(137, 182, 13);
+  border-style: inset;
 }
 .headText {
   margin: 0 0 1rem 0;
   font-size: var(--font-size-lg);
 }
 .hide {
-  //visibility: hidden;
   opacity: 0;
   top: 20px;
   transition: opacity 400ms ease-out, top 400ms ease-in;

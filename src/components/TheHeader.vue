@@ -11,7 +11,7 @@
     />
     <TheHeaderLink
       :show-menu="showMenu"
-      @hideMenu="Hide"
+      @hide-menu="Hide"
     />
   </div>
 </template>
