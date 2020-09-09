@@ -13,6 +13,9 @@
       :show-menu="showMenu"
       @hide-menu="Hide"
     />
+    <div v-if="VisibleButtonHome" class="headerPhone">
+      <p class="phone">МТС +375 (25) 777-77-77</p>
+    </div>
   </div>
 </template>
 
@@ -56,6 +59,17 @@ export default {
   top: 20px;
   left: 20px;
 }
+.headerPhone {
+  position: fixed;
+  top: 35px;
+  right: 100px;
+  color: var(--main-text-color);
+  font-size: 1rem;
+  color: var(--hover-color);
+}
+.phone {
+  margin: 0;
+}
 .buttonShowMenu {
   position: fixed;
   top: 30px;
@@ -70,8 +84,16 @@ export default {
   background-color: hsla(0, 0%, 0%, 0.8);
   z-index: 3;
 }
+@media (min-width: 374px) {
+  .headerPhone {
+    font-size: 1.2rem;
+    right: 120px;
+  }
+}
 @media (min-width: 767px) {
-
+  .headerPhone {
+    right: 170px;
+  }
 }
 @media (min-width: 1023px) {
   .navigation{
@@ -85,6 +107,10 @@ export default {
   .buttonShowMenu {
     top: 50px;
     right: 50px;
+  }
+  .headerPhone {
+    top: 55px;
+    right: 200px;
   }
 }
 </style>

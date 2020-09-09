@@ -50,7 +50,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import CategoryCard from '@/components/CategoryCard.vue';
 import TheSphere from '@/components/TheSphere.vue';
 import TheGrill from '@/components/TheGrill.vue';
@@ -60,7 +59,7 @@ import TheGate from '@/components/TheGate.vue';
 import TheSmallGate from '@/components/TheSmallGate.vue';
 
 export default {
-  name: 'MainView',
+  name: 'Product',
   components: {
     CategoryCard,
     TheSphere,

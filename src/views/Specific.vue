@@ -1,6 +1,13 @@
 <template>
   <main class="wrap">
-    <router-link class="mainView" to="/product">Продукция</router-link>
+    <div class="linkContainer">
+        <router-link class="link" to="/product">Продукция</router-link> /
+        <router-link class="link"
+        :to="{ name: 'ListProduct',
+        params: { nameCategory: this.$route.params.nameCategory}}">
+        {{this.$store.state[this.$route.params.nameCategory].name}}
+        </router-link>
+    </div>
     <div class="pageLink">
         <router-link
           :to="{ name: 'SpecificPage',
@@ -28,9 +35,6 @@
           <template v-slot:pagination>
             <flux-pagination />
           </template>
-          <template v-slot:controls>
-            <flux-controls />
-          </template>
         </vue-flux>
     </div>
     <div class="right">
@@ -47,7 +51,7 @@
 
 <script>
 import {
-  VueFlux, FluxIndex, FluxPagination, FluxPreloader, FluxControls,
+  VueFlux, FluxIndex, FluxPagination, FluxPreloader,
 } from 'vue-flux';
 
 export default {
@@ -57,13 +61,12 @@ export default {
     FluxIndex,
     FluxPagination,
     FluxPreloader,
-    FluxControls,
   },
   data: () => ({
     options: {
       allowFullscreen: true,
       allowToSkipTransition: true,
-      autohideTime: 5000,
+      autohideTime: 0,
       autoplay: false,
       bindKeys: true,
       delay: 5000,
@@ -77,24 +80,22 @@ export default {
   }),
   computed: {
     description() {
-      return this.$store.state.allProduct[this.$route.params.nameCategory]
+      return this.$store.state[this.$route.params.nameCategory]
         .info[this.idProduct - 1].descriptions;
     },
     title() {
-      return this.$store.state
-        .allProduct[this.$route.params.nameCategory]
+      return this.$store.state[this.$route.params.nameCategory]
         .info[this.idProduct - 1].TitleSpec;
     },
     idProduct() {
-      return this.$store.state.allProduct[this.$route.params.nameCategory].idProduct;
+      return this.$route.params.idProduct;
     },
     maxCountProduct() {
-      return this.$store.state
-        .allProduct[this.$route.params.nameCategory]
+      return this.$store.state[this.$route.params.nameCategory]
         .info.length;
     },
     imgArray() {
-      return this.$store.state.allProduct[this.$route.params.nameCategory]
+      return this.$store.state[this.$route.params.nameCategory]
         .info[this.idProduct - 1].img;
     },
   },
@@ -105,18 +106,25 @@ export default {
     prevPage() {
       return Number(this.$route.params.idProduct) - 1;
     },
+    updadeImg() {
+      this.images = this.imgArray;
+    },
   },
-  beforeRouteUpdate(to, from, next) {
-    console.log(`to: ${to.params.idProduct} type ${typeof to.params.idProduct}`);
-    console.log(`from: ${from.params.idProduct}`);
-    if (to.params.idProduct > from.params.idProduct) {
-      this.$store.commit('nextProduct', this.$route.params.nameCategory);
-    } else {
-      this.$store.commit('previousProduct', this.$route.params.nameCategory);
-    }
-    this.images = this.imgArray;
-    next();
+  watch: {
+    // при изменениях маршрута обновляем массив изображений
+    $route: 'updadeImg',
   },
+  // beforeRouteUpdate(to, from, next) {
+  //   console.log(`to: ${to.params.idProduct} type ${typeof to.params.idProduct}`);
+  //   console.log(`from: ${from.params.idProduct}`);
+  //   // if (to.params.idProduct > from.params.idProduct) {
+  //   //   this.$store.commit('nextProduct', this.$route.params.nameCategory);
+  //   // } else {
+  //   //   this.$store.commit('previousProduct', this.$route.params.nameCategory);
+  //   // }
+  //   this.images = this.imgArray;
+  //   next();
+  // },
   created() {
     this.images = this.imgArray;
   },
@@ -124,8 +132,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.mainView, .previousView, .nextView {
+.link, .previousView, .nextView {
   text-decoration-color: var(--hover-color);
+}
+.linkContainer, .previousView, .nextView, .link {
   color: var(--main-text-color);
   font-size: var(--font-size-xs);
   font-family: 'Caveat', cursive;
@@ -142,13 +152,13 @@ export default {
 .pageLink{
   display: flex;
 }
- .previousView{
+.previousView{
   margin: 0 auto 1rem 1rem;
 }
- .nextView{
+.nextView{
   margin: 0 1rem 1rem auto;
 }
-.mainView {
+.linkContainer {
   position: absolute;
   top: 80px;
   left: 20px;
@@ -203,7 +213,7 @@ export default {
   .nextView{
     margin: 0 3rem 1rem auto;
   }
-  .mainView {
+  .linkContainer {
     top: 110px;
     left: 50px;
   }
@@ -219,7 +229,7 @@ export default {
   .title {
     margin: 0 3rem 1rem 3rem;
   }
-  .mainView, .previousView, .nextView {
+  .link, .previousView, .nextView {
     font-size: var(--font-size-sm);
   }
   .pageLink{

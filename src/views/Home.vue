@@ -143,7 +143,7 @@ export default {
     position: initial;
   }
 }
-@media (min-width: 1399px) {
+@media (min-width: 1439px) {
   .wrap{
     max-width: 50%;
   }

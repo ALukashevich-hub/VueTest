@@ -3,8 +3,8 @@
       <router-link @mouseover.native="mouseOver"
                    @mouseleave.native="mouseLeave"
                    class="wrapTouch"
-                   :to="{ name: 'SpecificPage',
-                    params: { nameCategory: nameCategory, idProduct: idProduct }}">
+                   :to="{ name: 'ListProduct',
+                    params: { nameCategory: nameCategory}}">
           <slot name="svgContainer">
             <svg class="svgContainer" width="140" height="140" viewBox="0 0 140 140">
             </svg>
@@ -42,11 +42,11 @@ export default {
       this.hasFocus = false;
     },
   },
-  computed: {
-    idProduct() {
-      return this.$store.state.allProduct[this.nameCategory].idProduct;
-    },
-  },
+  // computed: {
+  //   idProduct() {
+  //     return this.$store.state.allProduct[this.nameCategory].idProduct;
+  //   },
+  // },
 };
 </script>
 
