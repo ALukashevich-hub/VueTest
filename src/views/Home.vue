@@ -13,8 +13,8 @@
         декоративных изделий из металла, их описание
         и примерную стоимость конечного продукта
       </p>
-      <router-link to="/product"
-      class="productLink"><span class="linkLabel">Продукция</span>
+      <router-link to="/catalog"
+      class="productLink"><span class="linkLabel">Каталог</span>
       </router-link>
     </div>
   </main>
@@ -108,17 +108,17 @@ export default {
   text-decoration: none;
   font-size: var(--font-size-xs);
   box-sizing: border-box;
-  background: transparent;
-  color: #ffffff;
+  background-color: var(--button-color);
+  color: var(--background-color);
   box-shadow: none;
-  border: 2px green outset;
-  box-shadow: 0px 0px 20px 5px green;
+  border: 2px var(--button-color) outset;
+  box-shadow: 0px 0px 20px 5px var(--button-color);
   outline: none;
-  &:hover {
-    box-shadow: 0px 0px 20px 5px rgb(137, 182, 13);
+  &:hover, &:active, &:focus {
+    box-shadow: 0px 0px 20px 5px var(--button-color-hover);
+    background-color: var(--button-color-hover);
   }
   &:active {
-    background-color: rgb(137, 182, 13);
     border-style: inset;
   }
   .linkLabel {

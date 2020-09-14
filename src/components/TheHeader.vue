@@ -14,7 +14,7 @@
       @hide-menu="Hide"
     />
     <div v-if="VisibleButtonHome" class="headerPhone">
-      <p class="phone">МТС +375 (25) 777-77-77</p>
+      <p class="phone">МТС +375 (25) 777-21-20</p>
     </div>
   </div>
 </template>

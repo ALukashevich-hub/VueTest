@@ -2,7 +2,7 @@
   <main :class="$style.Contacts">
     <h1 :class="$style.headText">Контакты</h1>
     <p :class="$style.someText">Почта: хххххх@tut.by</p>
-    <p :class="$style.someText">Анатолий: +375 (29) xxx-xx-xx</p>
+    <p :class="$style.someText">Анатолий: +375 (29) 777-21-20</p>
     <p :class="$style.someText">Обратная связь</p>
     <form @submit.prevent="sendData" :class="$style.mainForm">
       <div :class="$style.inputBlockShort">
@@ -53,9 +53,10 @@
         :class="$style.inputTypeShort">
       </div>
       <div :class="$style.inputBlockLong">
-        <label for="email" :class="[$style.labelText, {[$style.hide]: !message.description}]">
+        <label for="description" :class="[$style.labelText, {[$style.hide]: !message.description}]">
         Запрос</label>
         <textarea name="description"
+        id="description"
         v-model="message.description"
         maxlength="500"
         rows="5"
@@ -144,23 +145,32 @@ export default {
   color: var(--hover-color);
   content: " *";
 }
-.inputTypeShort {
+
+.inputTypeShort, .inputTypeLong {
   background: transparent;
   box-sizing: border-box;
-  color: #ffffff;
+  color: #fff;
   width: 95%;
+  &::placeholder {
+    color: hsl(0, 0%, 80%);
+    font-size: 1rem;
+    font-family: 'Caveat', cursive;
+  }
+  &:hover, &:focus {
+    background-color: #fff;
+    color: #000;
+    &::placeholder {
+      color: #000;
+    }
+  }
+}
+.inputTypeLong {
+  resize: none;
 }
 .inputBlockShort {
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 0.2rem;
-}
-.inputTypeLong {
-  width: 95%;
-  resize: none;
-  box-sizing: border-box;
-  background: transparent;
-  color: #ffffff;
 }
 .inputBlockLong {
   box-sizing: border-box;
@@ -172,19 +182,22 @@ export default {
   height: 2rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
-  background: transparent;
-  color: #ffffff;
+  background-color: var(--button-color);;
+  color: var(--background-color);
   cursor: pointer;
   box-shadow: none;
-  border: 2px green outset;
-  box-shadow: 0px 0px 20px 5px green;
+  border: 2px var(--button-color) outset;
+  box-shadow: 0px 0px 20px 5px var(--button-color);
   outline: none;
 }
-.inputSubmit:hover {
-  box-shadow: 0px 0px 20px 5px rgb(137, 182, 13);
+
+.inputSubmit {
+  &:hover, &:active, &:focus {
+    box-shadow: 0px 0px 20px 5px var(--button-color-hover);
+    background-color: var(--button-color-hover);
+  }
 }
 .inputSubmit:active {
-  background-color: rgb(137, 182, 13);
   border-style: inset;
 }
 .headText {

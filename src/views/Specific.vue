@@ -1,7 +1,7 @@
 <template>
   <main class="wrap">
     <div class="linkContainer">
-        <router-link class="link" to="/product">Продукция</router-link> /
+        <router-link class="link" to="/catalog">Каталог</router-link> /
         <router-link class="link"
         :to="{ name: 'ListProduct',
         params: { nameCategory: this.$route.params.nameCategory}}">

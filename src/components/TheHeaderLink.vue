@@ -8,10 +8,10 @@
       <router-link
         class="navLink"
         :class="{onFocus: FocusId === 1}"
-        to="/product"
+        to="/catalog"
         @mouseover.native="mouseOver(1)"
         @mouseleave.native="mouseLeave"
-        @click.native="$emit('hide-menu')">Продукция
+        @click.native="$emit('hide-menu')">Каталог
       </router-link>
       <router-link
         class="navLink"

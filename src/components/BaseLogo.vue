@@ -28,7 +28,6 @@ export default {
           minimumScaleMultiplier: 1.5,
         },
         color: {
-          // start: '#bdb82d',
           start: '#5d5a00',
           end: '#d64a04',
         },
@@ -75,7 +74,6 @@ export default {
   },
   mounted() {
     const canvas = this.$refs.logo;
-    // Basic PIXI Setup
     const rendererOptions = {
       transparent: true,
       view: canvas,
@@ -118,6 +116,5 @@ export default {
 .borderLogo {
   width: inherit;
   height: inherit;
- // border: 1px solid green;
 }
 </style>

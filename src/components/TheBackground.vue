@@ -8,7 +8,6 @@ import * as PIXI from 'pixi.js';
 import * as particles from 'pixi-particles';
 import debounce from 'lodash.debounce';
 import pathRain from '@/assets/HardRain.png';
-// import pathFire from '@/assets/Fire.png';
 import pathParticle from '@/assets/particle.png';
 
 export default {

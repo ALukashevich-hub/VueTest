@@ -59,7 +59,7 @@ import TheGate from '@/components/TheGate.vue';
 import TheSmallGate from '@/components/TheSmallGate.vue';
 
 export default {
-  name: 'Product',
+  name: 'Catalog',
   components: {
     CategoryCard,
     TheSphere,
