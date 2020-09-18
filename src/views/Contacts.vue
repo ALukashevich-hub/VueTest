@@ -2,7 +2,7 @@
   <main :class="$style.Contacts">
     <h1 :class="$style.headText">Контакты</h1>
     <p :class="$style.someText">Почта: хххххх@tut.by</p>
-    <p :class="$style.someText">Анатолий: +375 (29) 777-21-20</p>
+    <p :class="$style.someText">Телефон: +375 (29) 777-21-20</p>
     <p :class="$style.someText">Обратная связь</p>
     <form @submit.prevent="sendData" :class="$style.mainForm">
       <div :class="$style.inputBlockShort">

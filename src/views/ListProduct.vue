@@ -30,8 +30,12 @@ export default {
     };
   },
   created() {
-    this.items = this.$store.state[this.$route.params.nameCategory].info;
-    this.productCount = this.items.length;
+    try {
+      this.items = this.$store.state[this.$route.params.nameCategory].info;
+      this.productCount = this.items.length;
+    } catch (error) {
+      this.$router.push({ path: '/oops' });
+    }
   },
 };
 </script>

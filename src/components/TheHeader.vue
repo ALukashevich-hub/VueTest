@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     VisibleButtonHome() {
-      return this.$route.name !== 'HomePage';
+      return this.$route.name !== 'Home';
     },
   },
   methods: {

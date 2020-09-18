@@ -17,19 +17,21 @@
       class="productLink"><span class="linkLabel">Каталог</span>
       </router-link>
     </div>
+    <Black></Black>
   </main>
 </template>
 
 <script>
 // @ is an alias to /src
 import BaseLogo from '@/components/BaseLogo.vue';
+import Black from '@/components/Black.vue';
 import throttle from 'lodash.throttle';
 import debounce from 'lodash.debounce';
 
 export default {
   name: 'Home',
   components: {
-    BaseLogo,
+    BaseLogo, Black,
   },
   data() {
     return {
