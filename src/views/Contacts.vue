@@ -71,6 +71,7 @@
 </template>
 
 <script>
+const DOMAIN = 'steelcraft.by/api/';
 export default {
   data() {
     return {
@@ -92,7 +93,7 @@ export default {
         mode: 'cors',
         body: JSON.stringify(this.message),
       };
-      fetch('http://localhost:8081/', requestOptions)
+      fetch(`${DOMAIN}`, requestOptions)
         .then((response) => {
           if (response.ok) {
             response.json().then(data => console.log(data));
@@ -101,7 +102,7 @@ export default {
               response.status}: ${response.statusText}`);
           }
         });
-      fetch('http://localhost:8081/', {
+      fetch(`${DOMAIN} + get`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         mode: 'cors',

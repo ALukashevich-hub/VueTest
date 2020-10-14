@@ -7,11 +7,11 @@
       <div class="logoHome">
         <BaseLogo />
       </div>
-      <h1 class="logoName">сайт/бренд</h1>
+      <h1 class="logoName">Steelcraft</h1>
       <p class="logoDesc">
-        Приветствую, здесь вы найдете примеры
-        декоративных изделий из металла, их описание
-        и примерную стоимость конечного продукта
+        Создайте уникальный стиль и атмосферу в своём доме,
+         а также на прилегающей территории,
+         с помощью фантазии и наших изделий
       </p>
       <router-link to="/catalog"
       class="productLink"><span class="linkLabel">Каталог</span>
@@ -51,11 +51,11 @@ export default {
     window.removeEventListener('resize', this.resizeDebounce);
   },
   methods: {
-    mouseHandler: throttle(function (event) {
+    mouseHandler: throttle(function mouseH(event) {
       this.addY = event.clientY / this.maxY * 2 - 1;
       this.addX = event.clientX / this.maxX * 2 - 1;
     }, 40),
-    resizeDebounce: debounce(function () {
+    resizeDebounce: debounce(function resizeD() {
       this.maxX = window.innerWidth;
       this.maxY = window.innerHeight;
     }, 200),
@@ -127,6 +127,16 @@ export default {
     margin: auto;
   }
 }
+@media (max-height: 550px) {
+  .logoHome {
+    width: 170px;
+    height: 170px;
+    margin-bottom: 0.7rem;
+  }
+  .logoName{
+    margin: 0 0 0.7rem 0;
+  }
+}
 @media (min-width: 767px) {
   .wrap{
     max-width: none;
@@ -143,6 +153,9 @@ export default {
 @media (min-width: 1023px) {
   .home{
     position: initial;
+  }
+  .logoDesc{
+    margin-bottom: 2rem;
   }
 }
 @media (min-width: 1439px) {

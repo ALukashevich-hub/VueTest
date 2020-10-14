@@ -114,17 +114,16 @@ export default {
     // при изменениях маршрута обновляем массив изображений
     $route: 'updadeImg',
   },
-  // beforeRouteUpdate(to, from, next) {
-  //   console.log(`to: ${to.params.idProduct} type ${typeof to.params.idProduct}`);
-  //   console.log(`from: ${from.params.idProduct}`);
-  //   // if (to.params.idProduct > from.params.idProduct) {
-  //   //   this.$store.commit('nextProduct', this.$route.params.nameCategory);
-  //   // } else {
-  //   //   this.$store.commit('previousProduct', this.$route.params.nameCategory);
-  //   // }
-  //   this.images = this.imgArray;
-  //   next();
-  // },
+  beforeRouteEnter(to, from, next) {
+    // console.log(to.params.idProduct);
+    if (Number.isNaN(Number(to.params.idProduct))) {
+      // console.log('NaN');
+      next('/oops');
+    } else if ((Number(to.params.idProduct) < 1)) {
+      // console.log('Out of range');
+      next('/oops');
+    } else next();
+  },
   created() {
     this.images = this.imgArray;
   },

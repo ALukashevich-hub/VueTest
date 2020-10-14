@@ -1,6 +1,6 @@
-# vue-spa-test
+# Steelcraft
 
-## Project setup
+## Описание
 ```
 npm install
 ```
@@ -20,5 +20,5 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Ссылка на сайт
+[Steelcraft.by](http://steelcraft.by).
