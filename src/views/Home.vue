@@ -5,7 +5,7 @@
   >
     <div class="wrap" :style="Transform">
       <div class="logoHome">
-        <BaseLogo />
+        <BaseLogo :freq=0.002></BaseLogo>
       </div>
       <h1 class="logoName">Steelcraft</h1>
       <p class="logoDesc">

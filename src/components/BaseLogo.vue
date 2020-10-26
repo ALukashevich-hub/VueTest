@@ -15,6 +15,9 @@ import pathTexture5 from '@/assets/BackSphere.svg';
 
 export default {
   name: 'BaseLogo',
+  props: {
+    freq: Number,
+  },
   data() {
     return {
       config: {
@@ -70,10 +73,12 @@ export default {
           r: 8,
         },
       },
+      ticker: null,
     };
   },
   mounted() {
     const canvas = this.$refs.logo;
+    this.config.frequency = this.freq;
     const rendererOptions = {
       transparent: true,
       view: canvas,
@@ -82,7 +87,7 @@ export default {
     };
     const stage = new PIXI.Container();
     const renderer = new PIXI.Renderer(rendererOptions);
-    const ticker = new PIXI.Ticker();
+    this.ticker = new PIXI.Ticker();
     const emitter = new particles.Emitter(
       stage,
       [PIXI.Texture.from(pathTexture2), PIXI.Texture.from(pathTexture3)],
@@ -102,12 +107,16 @@ export default {
     stage.addChild(frontSphere);
     renderer.plugins.interaction.autoPreventDefault = false;
     const update = () => {
-      emitter.update(0.015);
+      // console.log(emitter.particleCount);
+      emitter.update(this.ticker.elapsedMS * 0.001);
       renderer.render(stage);
     };
     emitter.emit = true;
-    ticker.add(update);
-    ticker.start();
+    this.ticker.add(update);
+    this.ticker.start();
+  },
+  destroyed() {
+    this.ticker.destroy();
   },
 };
 </script>

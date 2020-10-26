@@ -93,9 +93,8 @@ export default {
         PIXI.Texture.from(pathParticle)],
       this.config,
     );
-    // const ticker = new PIXI.Ticker();
     const update = () => {
-      emitter.update(0.015);
+      emitter.update(ticker.elapsedMS * 0.001);
       renderer.render(stage);
     };
     emitter.emit = true;

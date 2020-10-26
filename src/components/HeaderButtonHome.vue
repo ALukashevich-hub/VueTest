@@ -1,6 +1,6 @@
 <template>
   <router-link class="logoNav" to="/">
-    <BaseLogo />
+    <BaseLogo :freq=0.004></BaseLogo>
   </router-link>
 </template>
 

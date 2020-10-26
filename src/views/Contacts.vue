@@ -71,7 +71,7 @@
 </template>
 
 <script>
-const DOMAIN = 'steelcraft.by/api/';
+const API = 'steelcraft.by/api/';
 export default {
   data() {
     return {
@@ -93,7 +93,7 @@ export default {
         mode: 'cors',
         body: JSON.stringify(this.message),
       };
-      fetch(`${DOMAIN}`, requestOptions)
+      fetch(`${API}`, requestOptions)
         .then((response) => {
           if (response.ok) {
             response.json().then(data => console.log(data));
@@ -102,7 +102,7 @@ export default {
               response.status}: ${response.statusText}`);
           }
         });
-      fetch(`${DOMAIN} + get`, {
+      fetch(`${API} + get`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         mode: 'cors',
