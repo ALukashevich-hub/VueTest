@@ -1,7 +1,7 @@
 <template>
   <main :class="$style.Contacts">
     <h1 :class="$style.headText">Контакты</h1>
-    <p :class="$style.someText">Почта: хххххх@tut.by</p>
+    <p :class="$style.someText">Почта: Steelcraft.by@yandex.by</p>
     <p :class="$style.someText">Телефон: +375 (29) 777-21-20</p>
     <p :class="$style.someText">Обратная связь</p>
     <form @submit.prevent="sendData" :class="$style.mainForm">
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-const API = 'steelcraft.by/api/';
+const API = 'http://localhost:3000/api';
 export default {
   data() {
     return {
@@ -93,7 +93,7 @@ export default {
         mode: 'cors',
         body: JSON.stringify(this.message),
       };
-      fetch(`${API}`, requestOptions)
+      fetch(`${API}/post`, requestOptions)
         .then((response) => {
           if (response.ok) {
             response.json().then(data => console.log(data));
@@ -102,7 +102,7 @@ export default {
               response.status}: ${response.statusText}`);
           }
         });
-      fetch(`${API} + get`, {
+      fetch(`${API}/test`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         mode: 'cors',
